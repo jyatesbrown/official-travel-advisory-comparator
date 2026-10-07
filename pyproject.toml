@@ -1,0 +1,21 @@
+[project]
+name = "official-travel-advisory-comparator"
+version = "1.0.0"
+description = "Apify Actor comparing official U.S., U.K. and Canadian travel advisories for one destination."
+requires-python = ">=3.12"
+readme = "README.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = [".venv", "storage"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "ASYNC", "PT"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["live: calls the real government sources (run explicitly with -m live)"]
+addopts = "-m 'not live'"
