@@ -1,0 +1,14 @@
+{
+    "$schema": "https://apify.com/schemas/v1/output.ide.json",
+    "actorOutputSchemaVersion": 1,
+    "title": "Travel advisory comparison",
+    "description": "Exactly one dataset item per run: the normalized comparison of official U.S., U.K. and Canadian travel advisories for the requested destination.",
+    "properties": {
+        "comparison": {
+            "type": "string",
+            "title": "Advisory comparison record",
+            "description": "The single comparison record (status, resolved destination, per-government advisories, normalized severities, regional warnings, comparison summary and billing flag).",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

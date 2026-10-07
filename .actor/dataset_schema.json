@@ -1,0 +1,642 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "properties": {
+            "schemaVersion": {
+                "default": "1.0",
+                "description": "Record schema version.",
+                "type": "string"
+            },
+            "status": {
+                "description": "success: all sources ok; partial: >=2 ok, some failed; insufficient_sources: <2 ok; invalid_destination: input not resolved.",
+                "enum": [
+                    "success",
+                    "partial",
+                    "insufficient_sources",
+                    "invalid_destination"
+                ],
+                "type": "string"
+            },
+            "query": {
+                "properties": {
+                    "input": {
+                        "description": "Destination exactly as supplied.",
+                        "type": "string"
+                    },
+                    "canonicalDestination": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Canonical English destination name."
+                    },
+                    "iso2": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "ISO 3166-1 alpha-2 code (XK for Kosovo)."
+                    },
+                    "iso3": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "ISO 3166-1 alpha-3 code."
+                    },
+                    "matchMethod": {
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "name",
+                                    "alias",
+                                    "iso_code",
+                                    "fuzzy"
+                                ],
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "How the input was resolved."
+                    },
+                    "candidates": {
+                        "description": "Possible matches when the input is ambiguous.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "input",
+                    "canonicalDestination",
+                    "iso2",
+                    "iso3",
+                    "matchMethod"
+                ],
+                "type": "object"
+            },
+            "checkedAt": {
+                "description": "ISO-8601 UTC time of the lookup.",
+                "type": "string"
+            },
+            "sourcesRequested": {
+                "items": {
+                    "enum": [
+                        "US",
+                        "UK",
+                        "CA"
+                    ],
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "sourcesSucceeded": {
+                "items": {
+                    "enum": [
+                        "US",
+                        "UK",
+                        "CA"
+                    ],
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "sourcesFailed": {
+                "items": {
+                    "enum": [
+                        "US",
+                        "UK",
+                        "CA"
+                    ],
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "errors": {
+                "items": {
+                    "properties": {
+                        "sourceCode": {
+                            "anyOf": [
+                                {
+                                    "enum": [
+                                        "US",
+                                        "UK",
+                                        "CA"
+                                    ],
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Failed source, or null for destination errors."
+                        },
+                        "errorCode": {
+                            "enum": [
+                                "DESTINATION_NOT_FOUND",
+                                "UPSTREAM_UNAVAILABLE",
+                                "UPSTREAM_TIMEOUT",
+                                "PARSER_FAILED",
+                                "UNEXPECTED_SOURCE_FORMAT",
+                                "INVALID_DESTINATION"
+                            ],
+                            "type": "string"
+                        },
+                        "message": {
+                            "description": "Public error message (no stack traces).",
+                            "type": "string"
+                        },
+                        "retryable": {
+                            "description": "Whether retrying later may succeed.",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "sourceCode",
+                        "errorCode",
+                        "message",
+                        "retryable"
+                    ],
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "advisories": {
+                "items": {
+                    "properties": {
+                        "sourceCode": {
+                            "description": "US, UK or CA.",
+                            "enum": [
+                                "US",
+                                "UK",
+                                "CA"
+                            ],
+                            "type": "string"
+                        },
+                        "sourceName": {
+                            "description": "Issuing government body.",
+                            "type": "string"
+                        },
+                        "sourceUrl": {
+                            "description": "Official human-readable advisory page.",
+                            "type": "string"
+                        },
+                        "retrievalUrl": {
+                            "description": "Official machine-readable URL actually fetched.",
+                            "type": "string"
+                        },
+                        "retrievedAt": {
+                            "description": "ISO-8601 UTC time the source was fetched.",
+                            "type": "string"
+                        },
+                        "sourceUpdatedAt": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Source's own last-updated date/time (ISO-8601) if published."
+                        },
+                        "nativeLevel": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Native level identifier: US 'Level N', UK GOV.UK alert_status codes, CA advisory-state."
+                        },
+                        "nativeAdvice": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Native national advice wording; null when the source issues no national statement (UK)."
+                        },
+                        "normalizedSeverity": {
+                            "properties": {
+                                "overall": {
+                                    "anyOf": [
+                                        {
+                                            "maximum": 4,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ],
+                                    "description": "National advisory on the shared scale (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel); null if not mappable."
+                                },
+                                "regionalMax": {
+                                    "anyOf": [
+                                        {
+                                            "maximum": 4,
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ],
+                                    "description": "Highest severity of any regional (sub-national) warning; null if none or unknown."
+                                },
+                                "hasRegionalEscalation": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ],
+                                    "description": "True if some region is rated more severe than the national level; null if unknown."
+                                },
+                                "basis": {
+                                    "description": "How the normalized value was derived from the source's native value.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "overall",
+                                "regionalMax",
+                                "hasRegionalEscalation",
+                                "basis"
+                            ],
+                            "type": "object"
+                        },
+                        "riskCategories": {
+                            "description": "Controlled-vocabulary risk categories (deterministic mapping).",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "nativeRiskLabels": {
+                            "description": "Source labels/headings that produced the risk categories.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "riskCategoriesBasis": {
+                            "description": "Which part of the source the risk categories come from.",
+                            "type": "string"
+                        },
+                        "regionalWarnings": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "properties": {
+                                            "region": {
+                                                "description": "Region name as published by the source (heading or advice text).",
+                                                "type": "string"
+                                            },
+                                            "nativeAdvice": {
+                                                "description": "The source's own advice wording for this region.",
+                                                "type": "string"
+                                            },
+                                            "normalizedSeverity": {
+                                                "anyOf": [
+                                                    {
+                                                        "maximum": 4,
+                                                        "minimum": 1,
+                                                        "type": "integer"
+                                                    },
+                                                    {
+                                                        "type": "null"
+                                                    }
+                                                ],
+                                                "description": "Regional advice on the shared 1-4 scale."
+                                            },
+                                            "nativeDetails": {
+                                                "description": "Verbatim supporting text/bullets from the source (areas included or excepted).",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "region",
+                                            "nativeAdvice",
+                                            "normalizedSeverity"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Regional warnings; null when includeRegional is false."
+                        }
+                    },
+                    "required": [
+                        "sourceCode",
+                        "sourceName",
+                        "sourceUrl",
+                        "retrievalUrl",
+                        "retrievedAt",
+                        "sourceUpdatedAt",
+                        "nativeLevel",
+                        "nativeAdvice",
+                        "normalizedSeverity",
+                        "riskCategories",
+                        "nativeRiskLabels",
+                        "riskCategoriesBasis",
+                        "regionalWarnings"
+                    ],
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "comparison": {
+                "anyOf": [
+                    {
+                        "properties": {
+                            "availableSeverityValues": {
+                                "description": "Normalized overall severities, in source order.",
+                                "items": {
+                                    "type": "integer"
+                                },
+                                "type": "array"
+                            },
+                            "lowestOverallSeverity": {
+                                "anyOf": [
+                                    {
+                                        "maximum": 4,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "highestOverallSeverity": {
+                                "anyOf": [
+                                    {
+                                        "maximum": 4,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "severitySpread": {
+                                "anyOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "description": "max - min overall severity; null with fewer than two values."
+                            },
+                            "materialDisagreement": {
+                                "anyOf": [
+                                    {
+                                        "type": "boolean"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "description": "True when severitySpread >= 2; null if not computable."
+                            },
+                            "highestRegionalSeverity": {
+                                "anyOf": [
+                                    {
+                                        "maximum": 4,
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "description": "Highest regionalMax across sources."
+                            },
+                            "sourcesAtHighestOverallSeverity": {
+                                "items": {
+                                    "enum": [
+                                        "US",
+                                        "UK",
+                                        "CA"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "availableSeverityValues",
+                            "lowestOverallSeverity",
+                            "highestOverallSeverity",
+                            "severitySpread",
+                            "materialDisagreement",
+                            "highestRegionalSeverity",
+                            "sourcesAtHighestOverallSeverity"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ],
+                "description": "Cross-source comparison; null for invalid destinations."
+            },
+            "billing": {
+                "properties": {
+                    "billable": {
+                        "description": "Whether this lookup is charged (one destination-lookup event).",
+                        "type": "boolean"
+                    },
+                    "eventName": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Pay-per-event name charged, if billable."
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "billable",
+                    "eventName",
+                    "reason"
+                ],
+                "type": "object"
+            }
+        },
+        "required": [
+            "status",
+            "query",
+            "checkedAt",
+            "sourcesRequested",
+            "sourcesSucceeded",
+            "sourcesFailed",
+            "errors",
+            "advisories",
+            "comparison",
+            "billing"
+        ],
+        "type": "object"
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "description": "Destination, status and cross-government severity comparison.",
+            "transformation": {
+                "flatten": [
+                    "query",
+                    "comparison",
+                    "billing"
+                ],
+                "fields": [
+                    "query.canonicalDestination",
+                    "status",
+                    "comparison.availableSeverityValues",
+                    "comparison.severitySpread",
+                    "comparison.materialDisagreement",
+                    "comparison.highestRegionalSeverity",
+                    "sourcesSucceeded",
+                    "sourcesFailed",
+                    "billing.billable",
+                    "checkedAt"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "query.canonicalDestination": {
+                        "label": "Destination",
+                        "format": "text"
+                    },
+                    "status": {
+                        "label": "Status",
+                        "format": "text"
+                    },
+                    "comparison.availableSeverityValues": {
+                        "label": "Severities (1-4)",
+                        "format": "array"
+                    },
+                    "comparison.severitySpread": {
+                        "label": "Spread",
+                        "format": "number"
+                    },
+                    "comparison.materialDisagreement": {
+                        "label": "Material disagreement",
+                        "format": "boolean"
+                    },
+                    "comparison.highestRegionalSeverity": {
+                        "label": "Highest regional",
+                        "format": "number"
+                    },
+                    "sourcesSucceeded": {
+                        "label": "Sources OK",
+                        "format": "array"
+                    },
+                    "sourcesFailed": {
+                        "label": "Sources failed",
+                        "format": "array"
+                    },
+                    "billing.billable": {
+                        "label": "Billable",
+                        "format": "boolean"
+                    },
+                    "checkedAt": {
+                        "label": "Checked at",
+                        "format": "date"
+                    }
+                }
+            }
+        },
+        "advisories": {
+            "title": "Advisories by government",
+            "description": "One row per government source.",
+            "transformation": {
+                "unwind": [
+                    "advisories"
+                ],
+                "fields": [
+                    "sourceCode",
+                    "nativeLevel",
+                    "nativeAdvice",
+                    "normalizedSeverity",
+                    "riskCategories",
+                    "sourceUpdatedAt",
+                    "sourceUrl"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "sourceCode": {
+                        "label": "Source",
+                        "format": "text"
+                    },
+                    "nativeLevel": {
+                        "label": "Native level",
+                        "format": "text"
+                    },
+                    "nativeAdvice": {
+                        "label": "Native advice",
+                        "format": "text"
+                    },
+                    "normalizedSeverity": {
+                        "label": "Normalized severity",
+                        "format": "object"
+                    },
+                    "riskCategories": {
+                        "label": "Risk categories",
+                        "format": "array"
+                    },
+                    "sourceUpdatedAt": {
+                        "label": "Source updated",
+                        "format": "text"
+                    },
+                    "sourceUrl": {
+                        "label": "Official page",
+                        "format": "link"
+                    }
+                }
+            }
+        }
+    }
+}

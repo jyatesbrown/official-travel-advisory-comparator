@@ -1,0 +1,24 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+    "actorSpecification": 1,
+    "name": "official-travel-advisory-comparator",
+    "title": "Official Travel Advisory Comparator — US, UK & Canada",
+    "description": "Compare current official U.S. State Department, U.K. FCDO and Government of Canada travel advisories for one destination. Returns one structured record with native advice, normalized 1-4 severity, regional warnings, risk categories and source URLs.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "python-start",
+        "generatedBy": "Devin (Cognition AI)"
+    },
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "readme": "../README.md",
+    "dockerfile": "../Dockerfile",
+    "minMemoryMbytes": 128,
+    "maxMemoryMbytes": 1024,
+    "defaultMemoryMbytes": 256,
+    "usesStandbyMode": false
+}

@@ -1,0 +1,38 @@
+{
+    "title": "Official Travel Advisory Comparator input",
+    "description": "Look up one country or territory and compare its current official travel advisories from the U.S. Department of State, the U.K. FCDO and the Government of Canada.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "destination": {
+            "title": "Destination",
+            "type": "string",
+            "description": "One country or territory, in English. Common alternate names and ISO 3166-1 codes are accepted, e.g. \"Trinidad and Tobago\", \"Turkey\" (resolves to Türkiye), \"Ivory Coast\", \"TT\". Ambiguous or unknown names return status \"invalid_destination\" and are not charged.",
+            "editor": "textfield",
+            "prefill": "Trinidad and Tobago",
+            "minLength": 1,
+            "maxLength": 100
+        },
+        "sources": {
+            "title": "Government sources",
+            "type": "array",
+            "description": "Which official sources to compare. At least two are required. Default: all three.",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["US", "UK", "CA"],
+                "enumTitles": ["U.S. Department of State", "U.K. Foreign, Commonwealth & Development Office", "Government of Canada"]
+            },
+            "default": ["US", "UK", "CA"],
+            "minItems": 2,
+            "uniqueItems": true
+        },
+        "includeRegional": {
+            "title": "Include regional warnings",
+            "type": "boolean",
+            "description": "Include the list of sub-national (regional) warnings for each source. Regional maximum severity is always reported in normalizedSeverity.",
+            "default": true
+        }
+    },
+    "required": ["destination"]
+}
