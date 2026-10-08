@@ -30,7 +30,7 @@
         "includeRegional": {
             "title": "Include regional warnings",
             "type": "boolean",
-            "description": "Include the list of sub-national (regional) warnings for each source. Regional maximum severity is always reported in normalizedSeverity.",
+            "description": "Include the list of sub-national (regional) warnings that could be extracted from each source (availability varies by source). Regional maximum severity is always reported in normalizedSeverity.",
             "default": true
         }
     },

@@ -3,7 +3,7 @@
     "actorSpecification": 1,
     "name": "official-travel-advisory-comparator",
     "title": "Official Travel Advisory Comparator — US, UK & Canada",
-    "description": "Compare current official U.S. State Department, U.K. FCDO and Government of Canada travel advisories for one destination. Returns one structured record with native advice, normalized 1-4 severity, regional warnings, risk categories and source URLs.",
+    "description": "Compare current official U.S., U.K., and Canadian government travel advisories for one destination. Returns normalized severity, available regional warnings, risk categories, and official source URLs as structured data for AI agents and automation workflows.",
     "version": "1.0",
     "buildTag": "latest",
     "meta": {
