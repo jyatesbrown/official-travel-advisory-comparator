@@ -17,3 +17,8 @@ benchmarks/results/*
 !benchmarks/results/raw-default-1.1.1.jsonl
 !benchmarks/results/raw-directed-1.1.1.jsonl
 !benchmarks/results/sanity-1.1.1.json
+!benchmarks/results/final-semantics-patch.json
+!benchmarks/results/final-semantics-patch.md
+!benchmarks/results/raw-default-1.2.1.jsonl
+!benchmarks/results/raw-directed-1.2.1.jsonl
+!benchmarks/results/sanity-1.2.1.json

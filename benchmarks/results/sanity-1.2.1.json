@@ -1,0 +1,755 @@
+[
+  {
+    "input": {
+      "destination": "Mexico"
+    },
+    "runId": "F7dlCKozoD4AQSHvF",
+    "buildNumber": "1.2.1",
+    "record": {
+      "schemaVersion": "1.2",
+      "status": "success",
+      "query": {
+        "input": "Mexico",
+        "canonicalDestination": "Mexico",
+        "iso2": "MX",
+        "iso3": "MEX",
+        "matchMethod": "name",
+        "candidates": []
+      },
+      "checkedAt": "2026-10-08T17:04:47Z",
+      "sourcesRequested": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesSucceeded": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesFailed": [],
+      "errors": [],
+      "advisories": [
+        {
+          "sourceCode": "US",
+          "sourceName": "U.S. Department of State",
+          "sourceUrl": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mex.html",
+          "retrievalUrl": "https://travel.state.gov/_res/rss/TAsTWs.xml",
+          "retrievedAt": "2026-10-08T17:04:47Z",
+          "sourceUpdatedAt": "2026-05-29",
+          "nativeLevel": "Level 2",
+          "nativeAdvice": "Exercise Increased Caution",
+          "nativeScale": {
+            "type": "numbered",
+            "description": "U.S. Department of State uses advisory Levels 1 through 4 (1 Exercise Normal Precautions, 2 Exercise Increased Caution, 3 Reconsider Travel, 4 Do Not Travel)."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": null,
+            "hasRegionalEscalation": null,
+            "basis": "Mapped from U.S. Department of State Level 2 (Exercise Increased Caution)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "terrorism",
+            "kidnapping"
+          ],
+          "nativeRiskLabels": [
+            "terrorism",
+            "crime",
+            "kidnapping"
+          ],
+          "riskCategoriesBasis": "Risk factors named in the advisory summary sentence ('... due to ...').",
+          "regionalCoverage": "unavailable",
+          "regionalCoverageNote": "Regional advisory detail is unavailable from the U.S. State Department RSS source used by this Actor.",
+          "regionalWarnings": null
+        },
+        {
+          "sourceCode": "UK",
+          "sourceName": "U.K. Foreign, Commonwealth & Development Office",
+          "sourceUrl": "https://www.gov.uk/foreign-travel-advice/mexico",
+          "retrievalUrl": "https://www.gov.uk/api/content/foreign-travel-advice/mexico",
+          "retrievedAt": "2026-10-08T17:04:47Z",
+          "sourceUpdatedAt": "2026-10-01T14:16:05Z",
+          "nativeLevel": "avoid_all_but_essential_travel_to_parts",
+          "nativeAdvice": null,
+          "nativeScale": {
+            "type": "categorical",
+            "description": "UK FCDO uses advisory wording such as 'against all travel' or 'against all but essential travel' (to the whole country or to parts of it) rather than a numbered national scale; nativeLevel lists the GOV.UK alert_status codes."
+          },
+          "normalizedSeverity": {
+            "overall": 1,
+            "regionalMax": 3,
+            "hasRegionalEscalation": true,
+            "basis": "GOV.UK alert_status=['avoid_all_but_essential_travel_to_parts']: no FCDO advice against travel to the whole country, mapped to 1 (the FCDO has no intermediate national levels)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "terrorism",
+            "kidnapping",
+            "civil_unrest",
+            "natural_disaster"
+          ],
+          "nativeRiskLabels": [
+            "Terrorism",
+            "Terrorism in Mexico",
+            "Political situation",
+            "Crime",
+            "Scams",
+            "Kidnapping",
+            "Vehicle crime",
+            "Extreme weather and natural disasters",
+            "Hurricanes",
+            "Earthquakes",
+            "Volcanic eruptions"
+          ],
+          "riskCategoriesBasis": "Section headings of the GOV.UK 'Safety and security' page that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": [
+            {
+              "region": "State of Baja California",
+              "nativeAdvice": "FCDO advises against all but essential travel to the city of Tijuana, except:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "airside transit through Tijuana airport",
+                "the Cross Border Xpress bridge from the airport linking terminals across the Mexican-US border",
+                "the federal toll road 1D and Via Rápida through Tijuana to the border"
+              ]
+            },
+            {
+              "region": "State of Baja California",
+              "nativeAdvice": "FCDO advises against all but essential travel to the city of Tecate in Baja California, including roads between Tijuana and Tecate.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Chihuahua",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Chihuahua, except:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "the city of Chihuahua",
+                "the border crossing in Ciudad Juárez (accessed by federal toll road 45)",
+                "federal toll road 45D connecting the cities of Chihuahua and Ciudad Juárez",
+                "the Copper Canyon rail route to and from Chihuahua and towns immediately on this route including Creel",
+                "the road from Creel via San Juanito to San Pedro",
+                "state highway 16 from San Pedro to Chihuahua"
+              ]
+            },
+            {
+              "region": "State of Sinaloa",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Sinaloa, except:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "the cities of Los Mochis and Mazatlán",
+                "road 32 that runs between El Fuerte and Los Mochis",
+                "the 15D federal toll road that runs the length of the state",
+                "the Copper Canyon rail route to and from Los Mochis, El Fuerte and the towns immediately on this route"
+              ]
+            },
+            {
+              "region": "State of Tamaulipas",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Tamaulipas, except:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "the border crossing at Nuevo Laredo accessed by federal toll road 85D from Monterrey",
+                "federal highways 80, 81 and 85 between Tampico, Ciudad de Victoria and Magueyes, and the entire area of Tamaulipas south of these highways"
+              ]
+            },
+            {
+              "region": "State of Zacatecas",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Zacatecas.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Guanajuato",
+              "nativeAdvice": "FCDO advises against all but essential travel to the areas south-west of road 45D.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Michoacán",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Michoacán, except the:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "city of Morelia accessed by federal toll roads 15D, 126 and 43; and the federal toll road 48D between the city of Morelia and the General Francisco Mujica airport",
+                "town of Pátzcuaro accessed by federal toll roads 14D and 15 from Morelia, and boat trips out to islands on Lake Pátzcuaro",
+                "Federal Highway 15D"
+              ]
+            },
+            {
+              "region": "State of Jalisco",
+              "nativeAdvice": "FCDO advises against all but essential travel to the areas south and south-west of Lake Chapala to the border with the state of Colima.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Jalisco",
+              "nativeAdvice": "FCDO advises against all but essential travel to the northern municipalities of:",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "Bolaños",
+                "Chimaltitán",
+                "Colotlán",
+                "Hostotipaquillo",
+                "Huejúcar",
+                "Huequilla el Alto",
+                "Mezquitic",
+                "San Martin de Bolaños",
+                "Santa Maria de los Ángeles",
+                "Totatiche",
+                "Villa Guerrero"
+              ]
+            },
+            {
+              "region": "State of Colima",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Colima, except the city of Manzanillo accessed by sea or air via the Manzanillo-Costalegre International Airport, and direct travel via road 200 from the airport to Manzanillo.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Guerrero",
+              "nativeAdvice": "FCDO advises against all but essential travel to the state of Guerrero, except the town of Zihuatanejo/Ixtapa accessed by air.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Chiapas",
+              "nativeAdvice": "FCDO advises against all but essential travel to within 40km of the Guatemalan border between the Pacific Coast up to and including the border crossing at Gracias a Dio.",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            },
+            {
+              "region": "State of Chiapas",
+              "nativeAdvice": "FCDO advises against all but essential travel on Federal Highway 199 (Carretera Federal 199) between Rancho Nuevo (just outside San Cristobal de las Casas) and the Chancalá junction just outside Palenque (where Federal Highway 199 meets Federal Highway 307).",
+              "normalizedSeverity": 3,
+              "nativeDetails": []
+            }
+          ]
+        },
+        {
+          "sourceCode": "CA",
+          "sourceName": "Government of Canada",
+          "sourceUrl": "https://travel.gc.ca/destinations/mexico",
+          "retrievalUrl": "https://data.international.gc.ca/travel-voyage/cta-cap-mx.json",
+          "retrievedAt": "2026-10-08T17:04:47Z",
+          "sourceUpdatedAt": "2026-10-08T11:16:00Z",
+          "nativeLevel": "advisory-state 1",
+          "nativeAdvice": "Exercise a high degree of caution",
+          "nativeScale": {
+            "type": "categorical",
+            "description": "Government of Canada uses named advisory categories rather than numbered levels: 'Take normal security precautions', 'Exercise a high degree of caution', 'Avoid non-essential travel', 'Avoid all travel'. nativeLevel 'advisory-state N' is an internal feed code, not a public level."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": 3,
+            "hasRegionalEscalation": true,
+            "basis": "Mapped from Government of Canada risk level 'Exercise a high degree of caution' (advisory-state 1)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "kidnapping",
+            "civil_unrest",
+            "border_security",
+            "maritime"
+          ],
+          "nativeRiskLabels": [
+            "Demonstrations",
+            "Crime",
+            "Border areas",
+            "Petty crime",
+            "Organized crime",
+            "Kidnappings",
+            "Fraud",
+            "Online scams",
+            "Credit card, debit card and ATM fraud",
+            "Virtual kidnappings",
+            "Piracy"
+          ],
+          "riskCategoriesBasis": "Section headings of the travel.gc.ca 'Safety and security' section that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": [
+            {
+              "region": "Regional Advisory",
+              "nativeAdvice": "Avoid non-essential travel",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "Avoid non-essential travel to the following states due to high levels of violence and organized crime:",
+                "Chiapas, excluding:",
+                "the city and ruins of Palenque (and highway 186 leading there)",
+                "the city of Tuxtla Gutiérrez (and its airport and the main road leading there)",
+                "the city of San Cristobal de las Casas (and toll highway 190D between this city and Tuxtla Gutiérrez)",
+                "Chihuahua, excluding Chihuahua City",
+                "Colima, excluding the city of Manzanillo only if accessed by air",
+                "Guanajuato, in all areas south of and including highways 43D and 45D",
+                "Guerrero, excluding the cities of Ixtapa/Zihuatanejo only if accessed by air",
+                "Jalisco, within 50 km of the border with Michoacán state, excluding:",
+                "Mazamitla (and highway 405 leading there)",
+                "the area around Lake Chapala between highway 15 and 15D",
+                "Lagunas de Zempoala National Park in Morelos",
+                "Michoacán, excluding the cities of Morelia and Patzcuaro",
+                "Nayarit, within 20 km of the border with the states of Sinaloa and Durango",
+                "Nuevo León, excluding the city of Monterrey",
+                "Sinaloa, excluding the following areas, and only if accessed by air or sea:",
+                "the city of Los Mochis",
+                "specific areas in and around the city of Mazatlán:",
+                "Centro Histórico south of Avenida Gutiérrez Najera",
+                "the road connecting Centro Histórico to the airport",
+                "the main coastal roads from Centro Histórico to Playa Delfines, including Zona Cerritos and Zona Dorada (the Golden Zone)",
+                "the resorts on Playa Estrella del Mar and the road leading there from the airport",
+                "Sonora, excluding the cities of Hermosillo, Guaymas/San Carlos and Puerto Peñasco",
+                "Tamaulipas, excluding the city of Tampico only if accessed by air or sea",
+                "Zacatecas, excluding the city of Zacatecas"
+              ]
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "availableSeverityValues": [
+          2,
+          1,
+          2
+        ],
+        "lowestOverallSeverity": 1,
+        "highestOverallSeverity": 2,
+        "severitySpread": 1,
+        "materialDisagreement": false,
+        "highestRegionalSeverity": 3,
+        "regionalCoverage": {
+          "status": "partial",
+          "sourcesAvailable": [
+            "UK",
+            "CA"
+          ],
+          "sourcesUnavailable": [
+            "US"
+          ],
+          "allRequestedSourcesKnown": false
+        },
+        "regionalWarningConclusion": "warnings_reported",
+        "sourcesWithRegionalWarnings": [
+          "UK",
+          "CA"
+        ],
+        "sourcesAtHighestOverallSeverity": [
+          "US",
+          "CA"
+        ]
+      },
+      "billing": {
+        "billable": true,
+        "eventName": "destination-lookup",
+        "reason": "3 official sources compared"
+      }
+    }
+  },
+  {
+    "input": {
+      "destination": "Jamaica"
+    },
+    "runId": "fPAbddqUOefinFu5n",
+    "buildNumber": "1.2.1",
+    "record": {
+      "schemaVersion": "1.2",
+      "status": "success",
+      "query": {
+        "input": "Jamaica",
+        "canonicalDestination": "Jamaica",
+        "iso2": "JM",
+        "iso3": "JAM",
+        "matchMethod": "name",
+        "candidates": []
+      },
+      "checkedAt": "2026-10-08T17:04:52Z",
+      "sourcesRequested": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesSucceeded": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesFailed": [],
+      "errors": [],
+      "advisories": [
+        {
+          "sourceCode": "US",
+          "sourceName": "U.S. Department of State",
+          "sourceUrl": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.jam.html",
+          "retrievalUrl": "https://travel.state.gov/_res/rss/TAsTWs.xml",
+          "retrievedAt": "2026-10-08T17:04:52Z",
+          "sourceUpdatedAt": "2026-06-23",
+          "nativeLevel": "Level 2",
+          "nativeAdvice": "Exercise Increased Caution",
+          "nativeScale": {
+            "type": "numbered",
+            "description": "U.S. Department of State uses advisory Levels 1 through 4 (1 Exercise Normal Precautions, 2 Exercise Increased Caution, 3 Reconsider Travel, 4 Do Not Travel)."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": null,
+            "hasRegionalEscalation": null,
+            "basis": "Mapped from U.S. Department of State Level 2 (Exercise Increased Caution)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "health"
+          ],
+          "nativeRiskLabels": [
+            "crime",
+            "health risks"
+          ],
+          "riskCategoriesBasis": "Risk factors named in the advisory summary sentence ('... due to ...').",
+          "regionalCoverage": "unavailable",
+          "regionalCoverageNote": "Regional advisory detail is unavailable from the U.S. State Department RSS source used by this Actor.",
+          "regionalWarnings": null
+        },
+        {
+          "sourceCode": "UK",
+          "sourceName": "U.K. Foreign, Commonwealth & Development Office",
+          "sourceUrl": "https://www.gov.uk/foreign-travel-advice/jamaica",
+          "retrievalUrl": "https://www.gov.uk/api/content/foreign-travel-advice/jamaica",
+          "retrievedAt": "2026-10-08T17:04:52Z",
+          "sourceUpdatedAt": "2026-05-06T11:06:25Z",
+          "nativeLevel": "none",
+          "nativeAdvice": null,
+          "nativeScale": {
+            "type": "categorical",
+            "description": "UK FCDO uses advisory wording such as 'against all travel' or 'against all but essential travel' (to the whole country or to parts of it) rather than a numbered national scale; nativeLevel lists the GOV.UK alert_status codes."
+          },
+          "normalizedSeverity": {
+            "overall": 1,
+            "regionalMax": null,
+            "hasRegionalEscalation": false,
+            "basis": "GOV.UK alert_status=[]: no FCDO advice against travel to the whole country, mapped to 1 (the FCDO has no intermediate national levels)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "terrorism",
+            "civil_unrest",
+            "natural_disaster"
+          ],
+          "nativeRiskLabels": [
+            "Terrorism",
+            "Terrorism in Jamaica",
+            "Political situation",
+            "Crowds and demonstrations",
+            "Crime",
+            "Extreme weather and natural disasters",
+            "Hurricanes",
+            "Earthquakes"
+          ],
+          "riskCategoriesBasis": "Section headings of the GOV.UK 'Safety and security' page that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": []
+        },
+        {
+          "sourceCode": "CA",
+          "sourceName": "Government of Canada",
+          "sourceUrl": "https://travel.gc.ca/destinations/jamaica",
+          "retrievalUrl": "https://data.international.gc.ca/travel-voyage/cta-cap-jm.json",
+          "retrievedAt": "2026-10-08T17:04:52Z",
+          "sourceUpdatedAt": "2026-10-07T12:16:00Z",
+          "nativeLevel": "advisory-state 1",
+          "nativeAdvice": "Exercise a high degree of caution",
+          "nativeScale": {
+            "type": "categorical",
+            "description": "Government of Canada uses named advisory categories rather than numbered levels: 'Take normal security precautions', 'Exercise a high degree of caution', 'Avoid non-essential travel', 'Avoid all travel'. nativeLevel 'advisory-state N' is an internal feed code, not a public level."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": null,
+            "hasRegionalEscalation": false,
+            "basis": "Mapped from Government of Canada risk level 'Exercise a high degree of caution' (advisory-state 1)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "civil_unrest"
+          ],
+          "nativeRiskLabels": [
+            "Crime",
+            "Violent crime",
+            "Petty crime",
+            "Fraud",
+            "Credit card, debit card and ATM fraud",
+            "Romance scams",
+            "Lottery scams",
+            "Demonstrations"
+          ],
+          "riskCategoriesBasis": "Section headings of the travel.gc.ca 'Safety and security' section that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": []
+        }
+      ],
+      "comparison": {
+        "availableSeverityValues": [
+          2,
+          1,
+          2
+        ],
+        "lowestOverallSeverity": 1,
+        "highestOverallSeverity": 2,
+        "severitySpread": 1,
+        "materialDisagreement": false,
+        "highestRegionalSeverity": null,
+        "regionalCoverage": {
+          "status": "partial",
+          "sourcesAvailable": [
+            "UK",
+            "CA"
+          ],
+          "sourcesUnavailable": [
+            "US"
+          ],
+          "allRequestedSourcesKnown": false
+        },
+        "regionalWarningConclusion": "unknown_due_to_incomplete_coverage",
+        "sourcesWithRegionalWarnings": [],
+        "sourcesAtHighestOverallSeverity": [
+          "US",
+          "CA"
+        ]
+      },
+      "billing": {
+        "billable": true,
+        "eventName": "destination-lookup",
+        "reason": "3 official sources compared"
+      }
+    }
+  },
+  {
+    "input": {
+      "destination": "Turkey"
+    },
+    "runId": "ZnNaR6djDxF4knpzQ",
+    "buildNumber": "1.2.1",
+    "record": {
+      "schemaVersion": "1.2",
+      "status": "success",
+      "query": {
+        "input": "Turkey",
+        "canonicalDestination": "Türkiye",
+        "iso2": "TR",
+        "iso3": "TUR",
+        "matchMethod": "alias",
+        "candidates": []
+      },
+      "checkedAt": "2026-10-08T17:04:57Z",
+      "sourcesRequested": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesSucceeded": [
+        "US",
+        "UK",
+        "CA"
+      ],
+      "sourcesFailed": [],
+      "errors": [],
+      "advisories": [
+        {
+          "sourceCode": "US",
+          "sourceName": "U.S. Department of State",
+          "sourceUrl": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tur.html",
+          "retrievalUrl": "https://travel.state.gov/_res/rss/TAsTWs.xml",
+          "retrievedAt": "2026-10-08T17:04:57Z",
+          "sourceUpdatedAt": "2026-06-09",
+          "nativeLevel": "Level 2",
+          "nativeAdvice": "Exercise Increased Caution",
+          "nativeScale": {
+            "type": "numbered",
+            "description": "U.S. Department of State uses advisory Levels 1 through 4 (1 Exercise Normal Precautions, 2 Exercise Increased Caution, 3 Reconsider Travel, 4 Do Not Travel)."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": 4,
+            "hasRegionalEscalation": true,
+            "basis": "Mapped from U.S. Department of State Level 2 (Exercise Increased Caution)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "terrorism",
+            "armed_conflict",
+            "arbitrary_detention"
+          ],
+          "nativeRiskLabels": [
+            "terrorism",
+            "armed conflict",
+            "arbitrary detentions"
+          ],
+          "riskCategoriesBasis": "Risk factors named in the advisory summary sentence ('... due to ...').",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": "Regional warnings are limited to areas named in the U.S. State Department RSS summary used by this Actor.",
+          "regionalWarnings": [
+            {
+              "region": "the border region with Syria and Iraq",
+              "nativeAdvice": "Do not travel",
+              "normalizedSeverity": 4,
+              "nativeDetails": [
+                "Do not travel to the border region with Syria and Iraq due to risk of terrorism and armed conflict."
+              ]
+            }
+          ]
+        },
+        {
+          "sourceCode": "UK",
+          "sourceName": "U.K. Foreign, Commonwealth & Development Office",
+          "sourceUrl": "https://www.gov.uk/foreign-travel-advice/turkey",
+          "retrievalUrl": "https://www.gov.uk/api/content/foreign-travel-advice/turkey",
+          "retrievedAt": "2026-10-08T17:04:57Z",
+          "sourceUpdatedAt": "2026-09-21T13:00:49Z",
+          "nativeLevel": "avoid_all_travel_to_parts",
+          "nativeAdvice": null,
+          "nativeScale": {
+            "type": "categorical",
+            "description": "UK FCDO uses advisory wording such as 'against all travel' or 'against all but essential travel' (to the whole country or to parts of it) rather than a numbered national scale; nativeLevel lists the GOV.UK alert_status codes."
+          },
+          "normalizedSeverity": {
+            "overall": 1,
+            "regionalMax": 4,
+            "hasRegionalEscalation": true,
+            "basis": "GOV.UK alert_status=['avoid_all_travel_to_parts']: no FCDO advice against travel to the whole country, mapped to 1 (the FCDO has no intermediate national levels)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "terrorism",
+            "civil_unrest",
+            "natural_disaster"
+          ],
+          "nativeRiskLabels": [
+            "Terrorism",
+            "Terrorism in Turkey",
+            "Political situation",
+            "Crime",
+            "Extreme weather and natural disasters",
+            "Earthquakes",
+            "Wildfires",
+            "Flooding"
+          ],
+          "riskCategoriesBasis": "Section headings of the GOV.UK 'Safety and security' page that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": [
+            {
+              "region": "Turkey-Syria border",
+              "nativeAdvice": "FCDO advises against all travel to within 10km of the border with Syria due to fighting and a heightened risk of terrorism. If you are in Syria, follow FCDO Travel Advice for Syria. The FCDO cannot facilitate entry for British nationals into Turkey from Syria.",
+              "normalizedSeverity": 4,
+              "nativeDetails": []
+            }
+          ]
+        },
+        {
+          "sourceCode": "CA",
+          "sourceName": "Government of Canada",
+          "sourceUrl": "https://travel.gc.ca/destinations/turkiye",
+          "retrievalUrl": "https://data.international.gc.ca/travel-voyage/cta-cap-tr.json",
+          "retrievedAt": "2026-10-08T17:04:58Z",
+          "sourceUpdatedAt": "2026-10-02T18:26:00Z",
+          "nativeLevel": "advisory-state 1",
+          "nativeAdvice": "Exercise a high degree of caution",
+          "nativeScale": {
+            "type": "categorical",
+            "description": "Government of Canada uses named advisory categories rather than numbered levels: 'Take normal security precautions', 'Exercise a high degree of caution', 'Avoid non-essential travel', 'Avoid all travel'. nativeLevel 'advisory-state N' is an internal feed code, not a public level."
+          },
+          "normalizedSeverity": {
+            "overall": 2,
+            "regionalMax": 4,
+            "hasRegionalEscalation": true,
+            "basis": "Mapped from Government of Canada risk level 'Exercise a high degree of caution' (advisory-state 1)",
+            "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
+          },
+          "riskCategories": [
+            "crime",
+            "terrorism",
+            "civil_unrest",
+            "border_security"
+          ],
+          "nativeRiskLabels": [
+            "Borders with Iraq and Syria",
+            "Terrorism",
+            "Demonstrations",
+            "Crime",
+            "Fraud",
+            "Credit card, debit card and ATM fraud",
+            "Scams"
+          ],
+          "riskCategoriesBasis": "Section headings of the travel.gc.ca 'Safety and security' section that match the vocabulary.",
+          "regionalCoverage": "available",
+          "regionalCoverageNote": null,
+          "regionalWarnings": [
+            {
+              "region": "Borders with Iraq and Syria",
+              "nativeAdvice": "Avoid all travel",
+              "normalizedSeverity": 4,
+              "nativeDetails": [
+                "Avoid all travel to within 10 km of the borders with Iraq and Syria due to the unpredictable security situation and the threat of terrorism."
+              ]
+            },
+            {
+              "region": "Southeastern provinces",
+              "nativeAdvice": "Avoid non-essential travel",
+              "normalizedSeverity": 3,
+              "nativeDetails": [
+                "Avoid non-essential travel to the following southeastern provinces due to the ongoing risk of cross-border terrorist activity:",
+                "Hakkari",
+                "Sirnak"
+              ]
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "availableSeverityValues": [
+          2,
+          1,
+          2
+        ],
+        "lowestOverallSeverity": 1,
+        "highestOverallSeverity": 2,
+        "severitySpread": 1,
+        "materialDisagreement": false,
+        "highestRegionalSeverity": 4,
+        "regionalCoverage": {
+          "status": "complete",
+          "sourcesAvailable": [
+            "US",
+            "UK",
+            "CA"
+          ],
+          "sourcesUnavailable": [],
+          "allRequestedSourcesKnown": true
+        },
+        "regionalWarningConclusion": "warnings_reported",
+        "sourcesWithRegionalWarnings": [
+          "US",
+          "UK",
+          "CA"
+        ],
+        "sourcesAtHighestOverallSeverity": [
+          "US",
+          "CA"
+        ]
+      },
+      "billing": {
+        "billable": true,
+        "eventName": "destination-lookup",
+        "reason": "3 official sources compared"
+      }
+    }
+  }
+]
