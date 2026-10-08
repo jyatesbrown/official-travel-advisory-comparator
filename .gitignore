@@ -12,3 +12,8 @@ benchmarks/results/*
 !benchmarks/results/baseline-1.0.2.md
 !benchmarks/results/raw-default-1.0.2.jsonl
 !benchmarks/results/raw-directed-1.0.2.jsonl
+!benchmarks/results/post-semantics-patch.json
+!benchmarks/results/post-semantics-patch.md
+!benchmarks/results/raw-default-1.1.1.jsonl
+!benchmarks/results/raw-directed-1.1.1.jsonl
+!benchmarks/results/sanity-1.1.1.json
