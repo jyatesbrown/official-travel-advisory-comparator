@@ -8,14 +8,21 @@ from pydantic.alias_generators import to_camel
 from ..utils.errors import ErrorCode
 from .input import SourceCode
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 
 Severity = Annotated[int, Field(ge=1, le=4)]
 LookupStatus = Literal["success", "partial", "insufficient_sources", "invalid_destination"]
 MatchMethod = Literal["name", "alias", "iso_code", "fuzzy"]
+RegionalCoverage = Literal["available", "unavailable", "not_applicable"]
+NativeScaleType = Literal["numbered", "categorical"]
 
 _SEVERITY_SCALE = (
     "1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel"
+)
+NORMALIZED_SCALE_NOTE = (
+    "Internal cross-source normalization used by this Actor for comparison "
+    f"({_SEVERITY_SCALE}). Not necessarily the source government's native advisory level; "
+    "see nativeLevel, nativeAdvice and nativeScale for the official terminology."
 )
 
 
@@ -28,15 +35,35 @@ class _Model(BaseModel):
 
 class NormalizedSeverity(_Model):
     overall: Severity | None = Field(
-        description=f"National advisory on the shared scale ({_SEVERITY_SCALE}); null if not mappable."
+        description=(
+            "National advisory on the Actor's internal cross-source 1-4 scale "
+            f"({_SEVERITY_SCALE}). Not necessarily the government's native level. Null if not mappable."
+        )
     )
     regional_max: Severity | None = Field(
-        description="Highest severity of any regional (sub-national) warning; null if none or unknown."
+        description=(
+            "Highest regional (sub-national) severity on the Actor's internal 1-4 scale. Null when no regional "
+            "warning is known, including when regionalCoverage is 'unavailable' (unknown, not 'none')."
+        )
     )
     has_regional_escalation: bool | None = Field(
-        description="True if some region is rated more severe than the national level; null if unknown."
+        description=(
+            "True if some region is rated more severe than the national level; null if unknown "
+            "(always null when regionalCoverage is 'unavailable')."
+        )
     )
     basis: str = Field(description="How the normalized value was derived from the source's native value.")
+    scale_note: str = Field(
+        default=NORMALIZED_SCALE_NOTE,
+        description="Reminder that these values are the Actor's internal normalization, not native levels.",
+    )
+
+
+class NativeScale(_Model):
+    type: NativeScaleType = Field(
+        description="'numbered' if the government publishes numbered levels, otherwise 'categorical'."
+    )
+    description: str = Field(description="How this government expresses its own advisory levels.")
 
 
 class RegionalWarning(_Model):
@@ -57,17 +84,34 @@ class SourceAdvisory(_Model):
     retrieved_at: str = Field(description="ISO-8601 UTC time the source was fetched.")
     source_updated_at: str | None = Field(description="Source's own last-updated date/time (ISO-8601) if published.")
     native_level: str | None = Field(
-        description="Native level identifier: US 'Level N', UK GOV.UK alert_status codes, CA advisory-state."
+        description=(
+            "Native level identifier: US 'Level N', UK GOV.UK alert_status codes, CA advisory-state "
+            "(an internal feed code, not a public Canadian level number)."
+        )
     )
     native_advice: str | None = Field(
         description="Native national advice wording; null when the source issues no national statement (UK)."
     )
+    native_scale: NativeScale = Field(description="The government's own advisory scale (numbered or categorical).")
     normalized_severity: NormalizedSeverity
     risk_categories: list[str] = Field(description="Controlled-vocabulary risk categories (deterministic mapping).")
     native_risk_labels: list[str] = Field(description="Source labels/headings that produced the risk categories.")
     risk_categories_basis: str = Field(description="Which part of the source the risk categories come from.")
+    regional_coverage: RegionalCoverage = Field(
+        description=(
+            "'available': the source data was sufficient to determine regional-warning status; "
+            "'unavailable': this source/adapter does not provide enough regional detail, so regional status is "
+            "unknown; 'not_applicable': regional breakdown does not apply to this destination."
+        )
+    )
+    regional_coverage_note: str | None = Field(
+        description="Deterministic note explaining regionalCoverage or omitted regional warnings; null if none."
+    )
     regional_warnings: list[RegionalWarning] | None = Field(
-        description="Regional warnings; null when includeRegional is false."
+        description=(
+            "Regional warnings. [] means the source was checked and lists no regional warnings. "
+            "null means unknown/unavailable (regionalCoverage 'unavailable') or omitted (includeRegional false)."
+        )
     )
 
 

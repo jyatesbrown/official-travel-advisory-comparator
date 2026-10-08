@@ -1,30 +1,363 @@
 {
-    "version": 1,
-    "actor": "official-travel-advisory-comparator",
-    "description": "Prompts for checking whether an AI agent with Apify MCP access discovers and selects this Actor when appropriate, and declines it when not. expectedSelection: true = the Actor should be chosen; false = it should not.",
-    "prompts": [
-        {"id": "p01", "prompt": "What is the current US State Department travel advisory level for Trinidad and Tobago, and do the UK and Canada agree?", "expectedSelection": true, "expectedInput": {"destination": "Trinidad and Tobago"}},
-        {"id": "p02", "prompt": "Compare the official government travel warnings for Mexico from the US, UK and Canada.", "expectedSelection": true, "expectedInput": {"destination": "Mexico"}},
-        {"id": "p03", "prompt": "I'm planning a trip to Turkey next month. Is it safe according to official government advice?", "expectedSelection": true, "expectedInput": {"destination": "Turkey"}},
-        {"id": "p04", "prompt": "Get a machine-readable travel risk level for Kenya that I can feed into our itinerary approval workflow.", "expectedSelection": true, "expectedInput": {"destination": "Kenya"}},
-        {"id": "p05", "prompt": "Does the FCDO advise against travel to any part of Thailand?", "expectedSelection": true, "expectedInput": {"destination": "Thailand", "sources": ["UK", "US"]}},
-        {"id": "p06", "prompt": "Our duty-of-care policy blocks bookings where any of the Five Eyes governments says 'avoid all travel'. Check Colombia.", "expectedSelection": true, "expectedInput": {"destination": "Colombia"}},
-        {"id": "p07", "prompt": "Which regions of Ukraine do Canada and the UK say to avoid?", "expectedSelection": true, "expectedInput": {"destination": "Ukraine", "sources": ["UK", "CA"]}},
-        {"id": "p08", "prompt": "Is there a Level 4 Do Not Travel advisory for Haiti right now?", "expectedSelection": true, "expectedInput": {"destination": "Haiti"}},
-        {"id": "p09", "prompt": "Check official travel advisories for Ivory Coast before I approve this employee's business trip.", "expectedSelection": true, "expectedInput": {"destination": "Ivory Coast"}},
-        {"id": "p10", "prompt": "Do the US and Canadian governments disagree about how dangerous France is?", "expectedSelection": true, "expectedInput": {"destination": "France", "sources": ["US", "CA"]}},
-        {"id": "p11", "prompt": "Give me a structured country travel risk record for Hong Kong with source URLs.", "expectedSelection": true, "expectedInput": {"destination": "Hong Kong"}},
-        {"id": "p12", "prompt": "Travel warning status for Côte d'Ivoire according to the Government of Canada and the State Department.", "expectedSelection": true, "expectedInput": {"destination": "Côte d'Ivoire", "sources": ["US", "CA"]}},
-        {"id": "p13", "prompt": "Book me a cheap flight from Toronto to Mexico City next Friday.", "expectedSelection": false},
-        {"id": "p14", "prompt": "What's the weather forecast for Bangkok this weekend?", "expectedSelection": false},
-        {"id": "p15", "prompt": "Do I need a visa to visit Kenya with a Canadian passport?", "expectedSelection": false, "note": "Entry requirements are out of scope; the Actor does not return visa rules."},
-        {"id": "p16", "prompt": "Show me how the US travel advisory for Mexico changed over the last five years.", "expectedSelection": false, "note": "Historical data is out of scope; the Actor returns only the current advisory."},
-        {"id": "p17", "prompt": "Alert me by email whenever the UK changes its travel advice for Israel.", "expectedSelection": false, "note": "Monitoring/alerting is out of scope."},
-        {"id": "p18", "prompt": "Is this neighbourhood in Paris safe to walk at night?", "expectedSelection": false, "note": "Street-level safety is not covered by national advisories."},
-        {"id": "p19", "prompt": "What does Germany's Federal Foreign Office say about travel to Egypt?", "expectedSelection": false, "note": "Only US, UK and Canadian sources are supported."},
-        {"id": "p20", "prompt": "Find hotels in Nairobi with good security ratings.", "expectedSelection": false},
-        {"id": "p21", "prompt": "Rank every country in Africa by travel risk.", "expectedSelection": false, "note": "One destination per run; a bulk ranking would need ~54 runs and is not the intended use."},
-        {"id": "p22", "prompt": "Summarize the official US, UK and Canadian advice on travelling to Colombia's Venezuelan border.", "expectedSelection": true, "expectedInput": {"destination": "Colombia", "includeRegional": true}},
-        {"id": "p23", "prompt": "Before generating this itinerary for Türkiye, check whether any official government travel warning applies.", "expectedSelection": true, "expectedInput": {"destination": "Türkiye"}}
-    ]
+  "version": 2,
+  "actor": "official-travel-advisory-comparator",
+  "description": "Prompts for checking whether an AI agent with Apify MCP access discovers and selects this Actor when appropriate, and declines it when not. expectedSelection: true = the Actor should be chosen; false = it should not.",
+  "prompts": [
+    {
+      "id": "p01",
+      "prompt": "What is the current US State Department travel advisory level for Trinidad and Tobago, and do the UK and Canada agree?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Trinidad and Tobago"
+      },
+      "category": "cross_source_disagreement",
+      "origin": "original"
+    },
+    {
+      "id": "p02",
+      "prompt": "Compare the official government travel warnings for Mexico from the US, UK and Canada.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Mexico"
+      },
+      "category": "explicit_comparator",
+      "origin": "original"
+    },
+    {
+      "id": "p03",
+      "prompt": "I'm planning a trip to Turkey next month. Is it safe according to official government advice?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Turkey"
+      },
+      "category": "ambiguous_natural_language",
+      "origin": "original"
+    },
+    {
+      "id": "p04",
+      "prompt": "Get a machine-readable travel risk level for Kenya that I can feed into our itinerary approval workflow.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Kenya"
+      },
+      "category": "general_official_advisory",
+      "origin": "original"
+    },
+    {
+      "id": "p05",
+      "prompt": "Does the FCDO advise against travel to any part of Thailand?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Thailand",
+        "sources": [
+          "UK",
+          "US"
+        ]
+      },
+      "category": "single_source_wording",
+      "origin": "original"
+    },
+    {
+      "id": "p06",
+      "prompt": "Our duty-of-care policy blocks bookings where any of the Five Eyes governments says 'avoid all travel'. Check Colombia.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Colombia"
+      },
+      "category": "general_official_advisory",
+      "origin": "original"
+    },
+    {
+      "id": "p07",
+      "prompt": "Which regions of Ukraine do Canada and the UK say to avoid?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Ukraine",
+        "sources": [
+          "UK",
+          "CA"
+        ]
+      },
+      "category": "single_source_wording",
+      "origin": "original"
+    },
+    {
+      "id": "p08",
+      "prompt": "Is there a Level 4 Do Not Travel advisory for Haiti right now?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Haiti"
+      },
+      "category": "single_source_wording",
+      "origin": "original"
+    },
+    {
+      "id": "p09",
+      "prompt": "Check official travel advisories for Ivory Coast before I approve this employee's business trip.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Ivory Coast"
+      },
+      "category": "general_official_advisory",
+      "origin": "original"
+    },
+    {
+      "id": "p10",
+      "prompt": "Do the US and Canadian governments disagree about how dangerous France is?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "France",
+        "sources": [
+          "US",
+          "CA"
+        ]
+      },
+      "category": "cross_source_disagreement",
+      "origin": "original"
+    },
+    {
+      "id": "p11",
+      "prompt": "Give me a structured country travel risk record for Hong Kong with source URLs.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Hong Kong"
+      },
+      "category": "general_official_advisory",
+      "origin": "original"
+    },
+    {
+      "id": "p12",
+      "prompt": "Travel warning status for Côte d'Ivoire according to the Government of Canada and the State Department.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Côte d'Ivoire",
+        "sources": [
+          "US",
+          "CA"
+        ]
+      },
+      "category": "single_source_wording",
+      "origin": "original"
+    },
+    {
+      "id": "p13",
+      "prompt": "Book me a cheap flight from Toronto to Mexico City next Friday.",
+      "expectedSelection": false,
+      "category": "flights",
+      "origin": "original"
+    },
+    {
+      "id": "p14",
+      "prompt": "What's the weather forecast for Bangkok this weekend?",
+      "expectedSelection": false,
+      "category": "weather",
+      "origin": "original"
+    },
+    {
+      "id": "p15",
+      "prompt": "Do I need a visa to visit Kenya with a Canadian passport?",
+      "expectedSelection": false,
+      "note": "Entry requirements are out of scope; the Actor does not return visa rules.",
+      "category": "visas",
+      "origin": "original"
+    },
+    {
+      "id": "p16",
+      "prompt": "Show me how the US travel advisory for Mexico changed over the last five years.",
+      "expectedSelection": false,
+      "note": "Historical data is out of scope; the Actor returns only the current advisory.",
+      "category": "advisory_history",
+      "origin": "original"
+    },
+    {
+      "id": "p17",
+      "prompt": "Alert me by email whenever the UK changes its travel advice for Israel.",
+      "expectedSelection": false,
+      "note": "Monitoring/alerting is out of scope.",
+      "category": "alerts_monitoring",
+      "origin": "original"
+    },
+    {
+      "id": "p18",
+      "prompt": "Is this neighbourhood in Paris safe to walk at night?",
+      "expectedSelection": false,
+      "note": "Street-level safety is not covered by national advisories.",
+      "category": "street_level_safety",
+      "origin": "original"
+    },
+    {
+      "id": "p19",
+      "prompt": "What does Germany's Federal Foreign Office say about travel to Egypt?",
+      "expectedSelection": false,
+      "note": "Only US, UK and Canadian sources are supported.",
+      "category": "unsupported_government",
+      "origin": "original"
+    },
+    {
+      "id": "p20",
+      "prompt": "Find hotels in Nairobi with good security ratings.",
+      "expectedSelection": false,
+      "category": "hotels",
+      "origin": "original"
+    },
+    {
+      "id": "p21",
+      "prompt": "Rank every country in Africa by travel risk.",
+      "expectedSelection": false,
+      "note": "One destination per run; a bulk ranking would need ~54 runs and is not the intended use.",
+      "category": "bulk_ranking",
+      "origin": "original"
+    },
+    {
+      "id": "p22",
+      "prompt": "Summarize the official US, UK and Canadian advice on travelling to Colombia's Venezuelan border.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Colombia",
+        "includeRegional": true
+      },
+      "category": "explicit_comparator",
+      "origin": "original"
+    },
+    {
+      "id": "p23",
+      "prompt": "Before generating this itinerary for Türkiye, check whether any official government travel warning applies.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Türkiye"
+      },
+      "category": "general_official_advisory",
+      "origin": "original"
+    },
+    {
+      "id": "p24",
+      "prompt": "Compare U.S., U.K., and Canadian travel advisories for Trinidad and Tobago.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Trinidad and Tobago"
+      },
+      "category": "explicit_comparator",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p25",
+      "prompt": "Get current official government travel warnings for Kenya.",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Kenya"
+      },
+      "category": "general_official_advisory",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p26",
+      "prompt": "Do major government travel advisories disagree about Mexico?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Mexico"
+      },
+      "category": "cross_source_disagreement",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p27",
+      "prompt": "What's the current travel warning situation for Colombia?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Colombia"
+      },
+      "category": "single_source_wording",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p28",
+      "prompt": "Is Thailand considered risky by government travel agencies right now?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Thailand"
+      },
+      "category": "ambiguous_natural_language",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p29",
+      "prompt": "Is it safe to travel to Jamaica right now?",
+      "expectedSelection": true,
+      "expectedInput": {
+        "destination": "Jamaica"
+      },
+      "category": "ambiguous_natural_language",
+      "origin": "added_to_reach_20"
+    },
+    {
+      "id": "p30",
+      "prompt": "Find me the cheapest flight to Mexico City.",
+      "expectedSelection": false,
+      "category": "flights",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p31",
+      "prompt": "What's the weather in Thailand next week?",
+      "expectedSelection": false,
+      "category": "weather",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p32",
+      "prompt": "Do I need a visa to visit France?",
+      "expectedSelection": false,
+      "category": "visas",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p33",
+      "prompt": "Find a hotel in Nairobi.",
+      "expectedSelection": false,
+      "category": "hotels",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p34",
+      "prompt": "Build me a five-day itinerary for Colombia.",
+      "expectedSelection": false,
+      "category": "itinerary",
+      "origin": "work_order_example"
+    },
+    {
+      "id": "p35",
+      "prompt": "Recommend good restaurants near the old town in Cartagena, Colombia.",
+      "expectedSelection": false,
+      "category": "restaurants",
+      "origin": "added_for_required_class"
+    },
+    {
+      "id": "p36",
+      "prompt": "How do I renew my U.S. passport before a trip to Japan?",
+      "expectedSelection": false,
+      "category": "passports",
+      "origin": "added_for_required_class"
+    },
+    {
+      "id": "p37",
+      "prompt": "Convert 500 US dollars to Trinidad and Tobago dollars.",
+      "expectedSelection": false,
+      "category": "currency_conversion",
+      "origin": "added_for_required_class"
+    },
+    {
+      "id": "p38",
+      "prompt": "What are the top tourist attractions to see in Kenya?",
+      "expectedSelection": false,
+      "category": "attractions",
+      "origin": "added_for_required_class"
+    },
+    {
+      "id": "p39",
+      "prompt": "What's the best way to get from Bangkok airport to the city centre?",
+      "expectedSelection": false,
+      "category": "local_transportation",
+      "origin": "added_for_required_class"
+    }
+  ]
 }

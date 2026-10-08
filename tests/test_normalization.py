@@ -1,6 +1,6 @@
 import pytest
 
-from src.models.output import NormalizedSeverity, SourceAdvisory
+from src.models.output import NativeScale, NormalizedSeverity, SourceAdvisory
 from src.normalization.comparison import compare
 from src.normalization.risks import RISK_CATEGORIES, categorize, map_labels
 from src.normalization.severity import (
@@ -139,12 +139,15 @@ def _adv(code: str, overall: int | None, regional_max: int | None = None) -> Sou
         source_updated_at=None,
         native_level=None,
         native_advice=None,
+        native_scale=NativeScale(type="numbered", description="test"),
         normalized_severity=NormalizedSeverity(
             overall=overall, regional_max=regional_max, has_regional_escalation=None, basis="test"
         ),
         risk_categories=[],
         native_risk_labels=[],
         risk_categories_basis="test",
+        regional_coverage="available",
+        regional_coverage_note=None,
         regional_warnings=[],
     )
 

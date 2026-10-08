@@ -3,7 +3,7 @@
     "fields": {
         "properties": {
             "schemaVersion": {
-                "default": "1.0",
+                "default": "1.1",
                 "description": "Record schema version.",
                 "type": "string"
             },
@@ -224,7 +224,7 @@
                                     "type": "null"
                                 }
                             ],
-                            "description": "Native level identifier: US 'Level N', UK GOV.UK alert_status codes, CA advisory-state."
+                            "description": "Native level identifier: US 'Level N', UK GOV.UK alert_status codes, CA advisory-state (an internal feed code, not a public Canadian level number)."
                         },
                         "nativeAdvice": {
                             "anyOf": [
@@ -236,6 +236,27 @@
                                 }
                             ],
                             "description": "Native national advice wording; null when the source issues no national statement (UK)."
+                        },
+                        "nativeScale": {
+                            "properties": {
+                                "type": {
+                                    "description": "'numbered' if the government publishes numbered levels, otherwise 'categorical'.",
+                                    "enum": [
+                                        "numbered",
+                                        "categorical"
+                                    ],
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "How this government expresses its own advisory levels.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "description"
+                            ],
+                            "type": "object"
                         },
                         "normalizedSeverity": {
                             "properties": {
@@ -250,7 +271,7 @@
                                             "type": "null"
                                         }
                                     ],
-                                    "description": "National advisory on the shared scale (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel); null if not mappable."
+                                    "description": "National advisory on the Actor's internal cross-source 1-4 scale (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the government's native level. Null if not mappable."
                                 },
                                 "regionalMax": {
                                     "anyOf": [
@@ -263,7 +284,7 @@
                                             "type": "null"
                                         }
                                     ],
-                                    "description": "Highest severity of any regional (sub-national) warning; null if none or unknown."
+                                    "description": "Highest regional (sub-national) severity on the Actor's internal 1-4 scale. Null when no regional warning is known, including when regionalCoverage is 'unavailable' (unknown, not 'none')."
                                 },
                                 "hasRegionalEscalation": {
                                     "anyOf": [
@@ -274,10 +295,15 @@
                                             "type": "null"
                                         }
                                     ],
-                                    "description": "True if some region is rated more severe than the national level; null if unknown."
+                                    "description": "True if some region is rated more severe than the national level; null if unknown (always null when regionalCoverage is 'unavailable')."
                                 },
                                 "basis": {
                                     "description": "How the normalized value was derived from the source's native value.",
+                                    "type": "string"
+                                },
+                                "scaleNote": {
+                                    "default": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology.",
+                                    "description": "Reminder that these values are the Actor's internal normalization, not native levels.",
                                     "type": "string"
                                 }
                             },
@@ -306,6 +332,26 @@
                         "riskCategoriesBasis": {
                             "description": "Which part of the source the risk categories come from.",
                             "type": "string"
+                        },
+                        "regionalCoverage": {
+                            "description": "'available': the source data was sufficient to determine regional-warning status; 'unavailable': this source/adapter does not provide enough regional detail, so regional status is unknown; 'not_applicable': regional breakdown does not apply to this destination.",
+                            "enum": [
+                                "available",
+                                "unavailable",
+                                "not_applicable"
+                            ],
+                            "type": "string"
+                        },
+                        "regionalCoverageNote": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Deterministic note explaining regionalCoverage or omitted regional warnings; null if none."
                         },
                         "regionalWarnings": {
                             "anyOf": [
@@ -354,7 +400,7 @@
                                     "type": "null"
                                 }
                             ],
-                            "description": "Regional warnings; null when includeRegional is false."
+                            "description": "Regional warnings. [] means the source was checked and lists no regional warnings. null means unknown/unavailable (regionalCoverage 'unavailable') or omitted (includeRegional false)."
                         }
                     },
                     "required": [
@@ -366,10 +412,13 @@
                         "sourceUpdatedAt",
                         "nativeLevel",
                         "nativeAdvice",
+                        "nativeScale",
                         "normalizedSeverity",
                         "riskCategories",
                         "nativeRiskLabels",
                         "riskCategoriesBasis",
+                        "regionalCoverage",
+                        "regionalCoverageNote",
                         "regionalWarnings"
                     ],
                     "type": "object"

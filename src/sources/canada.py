@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 
 from ..destinations.resolver import Destination
 from ..models.input import SourceCode
-from ..models.output import RegionalWarning, SourceAdvisory
+from ..models.output import NativeScale, RegionalWarning, SourceAdvisory
 from ..normalization.risks import map_labels
 from ..normalization.severity import CA_PHRASES, canada_state_to_severity, match_phrase, summarize
 from ..utils.dates import parse_canada_friendly_date, to_iso, utc_now
@@ -67,6 +67,19 @@ def extract_risk_labels(security_html: str) -> list[str]:
     return [t for h in soup.find_all(["h2", "h3", "h4"]) if (t := element_text(h))]
 
 
+NATIVE_SCALE = NativeScale(
+    type="categorical",
+    description=(
+        "Government of Canada uses named advisory categories rather than numbered levels: 'Take normal "
+        "security precautions', 'Exercise a high degree of caution', 'Avoid non-essential travel', "
+        "'Avoid all travel'. nativeLevel 'advisory-state N' is an internal feed code, not a public level."
+    ),
+)
+REGIONAL_UNAVAILABLE_NOTE = (
+    "Regional advisory detail could not be read from the Government of Canada data for this destination."
+)
+
+
 def build_advisory(doc: Any, *, destination: Destination, include_regional: bool) -> SourceAdvisory:
     data = doc.get("data") if isinstance(doc, dict) else None
     eng = data.get("eng") if isinstance(data, dict) else None
@@ -96,12 +109,16 @@ def build_advisory(doc: Any, *, destination: Destination, include_regional: bool
         log.warning("Canada %s: unrecognised advisory text %r; using advisory-state", destination.iso2, native_advice)
 
     has_regional = data.get("has-regional-advisory")
-    regional = extract_regional(str(eng.get("advisories") or ""), iso2=destination.iso2)
-    if regional is None:
+    parsed = extract_regional(str(eng.get("advisories") or ""), iso2=destination.iso2)
+    regional = parsed or []
+    coverage = "available"
+    if parsed is None:
         log.warning("Canada %s: advisories HTML has no AdvisoryContainer blocks", destination.iso2)
-        regional = []
-    if has_regional == 1 and not regional:
-        log.warning("Canada %s: has-regional-advisory=1 but no regional blocks parsed", destination.iso2)
+        coverage = "unavailable"
+    elif not regional and has_regional != 0:
+        if has_regional == 1:
+            log.warning("Canada %s: has-regional-advisory=1 but no regional blocks parsed", destination.iso2)
+        coverage = "unavailable"
 
     categories, native_labels = map_labels(
         extract_risk_labels(str(eng.get("security") or "")), unmatched_as_other=False
@@ -109,7 +126,7 @@ def build_advisory(doc: Any, *, destination: Destination, include_regional: bool
     severity = summarize(
         from_state,
         [w.normalized_severity for w in regional],
-        regional_indicated=has_regional == 1 if has_regional in (0, 1) else None,
+        regional_indicated=has_regional == 1 if has_regional in (0, 1) and coverage == "available" else None,
         basis=f"Mapped from Government of Canada risk level '{native_advice}' (advisory-state {state})",
     )
     slug = clean(eng.get("url-slug"))
@@ -122,13 +139,16 @@ def build_advisory(doc: Any, *, destination: Destination, include_regional: bool
         source_updated_at=parse_canada_friendly_date(eng.get("friendly-date")),
         native_level=f"advisory-state {state}",
         native_advice=native_advice,
+        native_scale=NATIVE_SCALE,
         normalized_severity=severity,
         risk_categories=categories,
         native_risk_labels=native_labels,
         risk_categories_basis=(
             "Section headings of the travel.gc.ca 'Safety and security' section that match the vocabulary."
         ),
-        regional_warnings=regional_output(include_regional, regional),
+        **regional_output(
+            include_regional, coverage, regional, REGIONAL_UNAVAILABLE_NOTE if coverage != "available" else None
+        ),
     )
 
 

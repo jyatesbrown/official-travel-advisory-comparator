@@ -8,6 +8,19 @@ SourceCode = Literal["US", "UK", "CA"]
 ALL_SOURCES: tuple[SourceCode, ...] = ("US", "UK", "CA")
 MIN_SOURCES = 2
 
+SOURCE_ALIASES: dict[str, SourceCode] = {
+    **dict.fromkeys(("us", "usa", "u.s.", "united states", "state department"), "US"),
+    **dict.fromkeys(("uk", "u.k.", "fcdo", "united kingdom", "gov.uk"), "UK"),
+    **dict.fromkeys(("ca", "can", "canada", "travel.gc.ca"), "CA"),
+}
+
+
+def normalize_source(value: object) -> object:
+    """Map a case-insensitive source alias to its canonical code; unknown values pass through to fail validation."""
+    if not isinstance(value, str):
+        return value
+    return SOURCE_ALIASES.get(" ".join(value.split()).lower(), value)
+
 
 class ActorInput(BaseModel):
     model_config = ConfigDict(extra="ignore", populate_by_name=True)
@@ -23,6 +36,11 @@ class ActorInput(BaseModel):
         if not value:
             raise ValueError("destination must not be blank")
         return value
+
+    @field_validator("sources", mode="before")
+    @classmethod
+    def _canonical_sources(cls, value: object) -> object:
+        return [normalize_source(v) for v in value] if isinstance(value, list) else value
 
     @field_validator("sources")
     @classmethod

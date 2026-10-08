@@ -86,7 +86,8 @@ def test_us_regional_text_is_clean(us_items) -> None:
 
 def test_us_restated_national_advice_is_not_a_region(us_items) -> None:
     advisory = _us(us_items, "Trinidad and Tobago")
-    assert advisory.regional_warnings == []
+    assert advisory.regional_warnings is None
+    assert advisory.regional_coverage == "unavailable"
     assert advisory.normalized_severity.regional_max is None
 
 
@@ -211,9 +212,11 @@ def test_uk_alert_without_parsable_regions_is_unknown() -> None:
         if part["slug"] == "warnings-and-insurance":
             part["body"] = "<p>Restructured page</p>"
     advisory = uk_fcdo.build_advisory(doc, slug="mexico", destination=dest("Mexico"), include_regional=True)
-    assert advisory.normalized_severity.regional_max == 3
-    assert advisory.normalized_severity.has_regional_escalation is True
-    assert advisory.regional_warnings == []
+    assert advisory.regional_coverage == "unavailable"
+    assert advisory.regional_warnings is None
+    assert advisory.normalized_severity.regional_max is None
+    assert advisory.normalized_severity.has_regional_escalation is None
+    assert advisory.regional_coverage_note
 
 
 @pytest.mark.parametrize(

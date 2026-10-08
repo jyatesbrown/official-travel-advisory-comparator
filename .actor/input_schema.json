@@ -16,14 +16,16 @@
         "sources": {
             "title": "Government sources",
             "type": "array",
-            "description": "Which official sources to compare. At least two are required. Default: all three.",
-            "editor": "select",
+            "description": "Governments to compare (at least two). Canonical codes: US (U.S. Department of State), UK (U.K. Foreign, Commonwealth & Development Office), CA (Government of Canada). Case-insensitive aliases are also accepted and normalized: us, usa, united states, state department; uk, fcdo, united kingdom, gov.uk; ca, can, canada, travel.gc.ca.",
+            "editor": "stringList",
             "items": {
-                "type": "string",
-                "enum": ["US", "UK", "CA"],
-                "enumTitles": ["U.S. Department of State", "U.K. Foreign, Commonwealth & Development Office", "Government of Canada"]
+                "type": "string"
             },
-            "default": ["US", "UK", "CA"],
+            "default": [
+                "US",
+                "UK",
+                "CA"
+            ],
             "minItems": 2,
             "uniqueItems": true
         },
@@ -34,5 +36,7 @@
             "default": true
         }
     },
-    "required": ["destination"]
+    "required": [
+        "destination"
+    ]
 }

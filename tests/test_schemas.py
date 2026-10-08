@@ -22,7 +22,10 @@ def test_input_schema_matches_model() -> None:
     schema = _load("input_schema.json")
     assert schema["required"] == ["destination"]
     assert set(schema["properties"]) == {"destination", "sources", "includeRegional"}
-    assert schema["properties"]["sources"]["items"]["enum"] == ["US", "UK", "CA"]
+    sources = schema["properties"]["sources"]
+    assert "enum" not in sources["items"], "aliases must pass platform validation"
+    for code in ("US", "UK", "CA"):
+        assert code in sources["description"]
     defaults = ActorInput.model_validate({"destination": "x"})
     assert schema["properties"]["sources"]["default"] == defaults.sources
     assert schema["properties"]["includeRegional"]["default"] is defaults.include_regional

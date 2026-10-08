@@ -4,7 +4,7 @@
     "name": "official-travel-advisory-comparator",
     "title": "Official Travel Advisory Comparator — US, UK & Canada",
     "description": "Compare current official U.S., U.K., and Canadian government travel advisories for one destination. Returns normalized severity, available regional warnings, risk categories, and official source URLs as structured data for AI agents and automation workflows.",
-    "version": "1.0",
+    "version": "1.1",
     "buildTag": "latest",
     "meta": {
         "templateId": "python-start",
