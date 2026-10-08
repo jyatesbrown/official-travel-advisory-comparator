@@ -1,0 +1,2623 @@
+{
+  "actor": "rhincodontypus/official-travel-advisory-comparator",
+  "actorBuild": "1.1.1",
+  "judgeModel": "claude-opus-5-5",
+  "arms": {
+    "default": {
+      "model": "claude-sonnet-5-5",
+      "mcpServer": "0.17.4",
+      "mcpTools": [
+        "search-actors",
+        "fetch-actor-details",
+        "call-actor",
+        "get-actor-run",
+        "get-dataset-items",
+        "get-key-value-store-record",
+        "search-apify-docs",
+        "fetch-apify-docs",
+        "apify--rag-web-browser",
+        "apify--web-fetch"
+      ],
+      "firstEpisodeAt": "2026-10-08T16:25:38.524767+00:00",
+      "counts": {
+        "relevant": 20,
+        "control": 19,
+        "relevantByCategory": {
+          "cross_source_disagreement": 3,
+          "explicit_comparator": 3,
+          "ambiguous_natural_language": 3,
+          "general_official_advisory": 6,
+          "single_source_wording": 5
+        }
+      },
+      "discovery": {
+        "rate": 0.0,
+        "discovered": 0,
+        "top1": 0.0,
+        "top3": 0.0,
+        "top5": 0.0,
+        "meanRank": null,
+        "medianRank": null,
+        "promptsWithAnySearch": 0
+      },
+      "selection": {
+        "givenDiscovery": null,
+        "endToEnd": 0.0,
+        "selectedCount": 0,
+        "selectedByTool": {
+          "apify/web-fetch": 17,
+          "apify/rag-web-browser": 3
+        }
+      },
+      "invocation": {
+        "validRate": null,
+        "firstAttemptValidRate": null,
+        "perCallValidRate": null,
+        "rejectedCalls": [],
+        "executionSuccessRate": null,
+        "callsWithInventedFields": 0,
+        "wrongDestination": 0
+      },
+      "interpretation": {
+        "correctRate": null,
+        "graded": 0,
+        "errors": {}
+      },
+      "abstention": {
+        "controls": 19,
+        "falseDiscoveryRate": 0.0,
+        "falseSelectionRate": 0.0,
+        "falseInvocationRate": 0.0,
+        "selectedByTool": {
+          "apify/rag-web-browser": 8,
+          "apify/web-fetch": 5,
+          "null": 6
+        }
+      },
+      "economics": {
+        "invocations": 0,
+        "chargedEventCounts": {},
+        "nominalEventValueUsd": 0.0,
+        "accountedDestinationLookups": 0,
+        "unexpectedLookupCharges": []
+      },
+      "latency": {
+        "actorRunTimeSecs": null,
+        "callActorToolLatencyS": null,
+        "episodeElapsedS": null
+      },
+      "competitors": {
+        "outrankedOursCount": {},
+        "selectedOverOursCount": {}
+      },
+      "rows": [
+        {
+          "id": "p01",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "What is the current US State Department travel advisory level for Trinidad and Tobago, and do the UK and Canada agree?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.22,
+          "invocations": []
+        },
+        {
+          "id": "p02",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Compare the official government travel warnings for Mexico from the US, UK and Canada.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.7,
+          "invocations": []
+        },
+        {
+          "id": "p03",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "I'm planning a trip to Turkey next month. Is it safe according to official government advice?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll check current advisories from a few major governments.",
+          "elapsedS": 2.66,
+          "invocations": []
+        },
+        {
+          "id": "p04",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Get a machine-readable travel risk level for Kenya that I can feed into our itinerary approval workflow.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.74,
+          "invocations": []
+        },
+        {
+          "id": "p05",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Does the FCDO advise against travel to any part of Thailand?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.56,
+          "invocations": []
+        },
+        {
+          "id": "p06",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Our duty-of-care policy blocks bookings where any of the Five Eyes governments says 'avoid all travel'. Check Colombia.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll check all five governments' current advisories for Colombia.",
+          "elapsedS": 4.76,
+          "invocations": []
+        },
+        {
+          "id": "p07",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Which regions of Ukraine do Canada and the UK say to avoid?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.33,
+          "invocations": []
+        },
+        {
+          "id": "p08",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Is there a Level 4 Do Not Travel advisory for Haiti right now?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.71,
+          "invocations": []
+        },
+        {
+          "id": "p09",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Check official travel advisories for Ivory Coast before I approve this employee's business trip.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll pull the advisories from several government sources at once.",
+          "elapsedS": 3.85,
+          "invocations": []
+        },
+        {
+          "id": "p10",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "Do the US and Canadian governments disagree about how dangerous France is?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll check both governments' current travel advisories for France.",
+          "elapsedS": 2.18,
+          "invocations": []
+        },
+        {
+          "id": "p11",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Give me a structured country travel risk record for Hong Kong with source URLs.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 4.6,
+          "invocations": []
+        },
+        {
+          "id": "p12",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Travel warning status for Côte d'Ivoire according to the Government of Canada and the State Department.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.83,
+          "invocations": []
+        },
+        {
+          "id": "p13",
+          "category": "flights",
+          "relevant": false,
+          "prompt": "Book me a cheap flight from Toronto to Mexico City next Friday.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": "I can't book flights, but I can look up options for you. I'll start with a search for current fares.",
+          "elapsedS": 3.34,
+          "invocations": []
+        },
+        {
+          "id": "p14",
+          "category": "weather",
+          "relevant": false,
+          "prompt": "What's the weather forecast for Bangkok this weekend?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.39,
+          "invocations": []
+        },
+        {
+          "id": "p15",
+          "category": "visas",
+          "relevant": false,
+          "prompt": "Do I need a visa to visit Kenya with a Canadian passport?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.43,
+          "invocations": []
+        },
+        {
+          "id": "p16",
+          "category": "advisory_history",
+          "relevant": false,
+          "prompt": "Show me how the US travel advisory for Mexico changed over the last five years.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.51,
+          "invocations": []
+        },
+        {
+          "id": "p17",
+          "category": "alerts_monitoring",
+          "relevant": false,
+          "prompt": "Alert me by email whenever the UK changes its travel advice for Israel.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.86,
+          "invocations": []
+        },
+        {
+          "id": "p18",
+          "category": "street_level_safety",
+          "relevant": false,
+          "prompt": "Is this neighbourhood in Paris safe to walk at night?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 5.85,
+          "invocations": []
+        },
+        {
+          "id": "p19",
+          "category": "unsupported_government",
+          "relevant": false,
+          "prompt": "What does Germany's Federal Foreign Office say about travel to Egypt?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.42,
+          "invocations": []
+        },
+        {
+          "id": "p20",
+          "category": "hotels",
+          "relevant": false,
+          "prompt": "Find hotels in Nairobi with good security ratings.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.93,
+          "invocations": []
+        },
+        {
+          "id": "p21",
+          "category": "bulk_ranking",
+          "relevant": false,
+          "prompt": "Rank every country in Africa by travel risk.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.91,
+          "invocations": []
+        },
+        {
+          "id": "p22",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Summarize the official US, UK and Canadian advice on travelling to Colombia's Venezuelan border.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.88,
+          "invocations": []
+        },
+        {
+          "id": "p23",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Before generating this itinerary for Türkiye, check whether any official government travel warning applies.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll check several official government advisories for Türkiye at once.",
+          "elapsedS": 3.64,
+          "invocations": []
+        },
+        {
+          "id": "p24",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Compare U.S., U.K., and Canadian travel advisories for Trinidad and Tobago.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.92,
+          "invocations": []
+        },
+        {
+          "id": "p25",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Get current official government travel warnings for Kenya.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 3.49,
+          "invocations": []
+        },
+        {
+          "id": "p26",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "Do major government travel advisories disagree about Mexico?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll pull the current advisories from several governments and compare them.",
+          "elapsedS": 3.28,
+          "invocations": []
+        },
+        {
+          "id": "p27",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "What's the current travel warning situation for Colombia?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.96,
+          "invocations": []
+        },
+        {
+          "id": "p28",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "Is Thailand considered risky by government travel agencies right now?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": "I'll check the current advisories from several governments.",
+          "elapsedS": 3.26,
+          "invocations": []
+        },
+        {
+          "id": "p29",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "Is it safe to travel to Jamaica right now?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.21,
+          "invocations": []
+        },
+        {
+          "id": "p30",
+          "category": "flights",
+          "relevant": false,
+          "prompt": "Find me the cheapest flight to Mexico City.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 3.71,
+          "invocations": []
+        },
+        {
+          "id": "p31",
+          "category": "weather",
+          "relevant": false,
+          "prompt": "What's the weather in Thailand next week?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.63,
+          "invocations": []
+        },
+        {
+          "id": "p32",
+          "category": "visas",
+          "relevant": false,
+          "prompt": "Do I need a visa to visit France?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 4.98,
+          "invocations": []
+        },
+        {
+          "id": "p33",
+          "category": "hotels",
+          "relevant": false,
+          "prompt": "Find a hotel in Nairobi.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.78,
+          "invocations": []
+        },
+        {
+          "id": "p34",
+          "category": "itinerary",
+          "relevant": false,
+          "prompt": "Build me a five-day itinerary for Colombia.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 13.58,
+          "invocations": []
+        },
+        {
+          "id": "p35",
+          "category": "restaurants",
+          "relevant": false,
+          "prompt": "Recommend good restaurants near the old town in Cartagena, Colombia.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.13,
+          "invocations": []
+        },
+        {
+          "id": "p36",
+          "category": "passports",
+          "relevant": false,
+          "prompt": "How do I renew my U.S. passport before a trip to Japan?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/web-fetch",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 2.32,
+          "invocations": []
+        },
+        {
+          "id": "p37",
+          "category": "currency_conversion",
+          "relevant": false,
+          "prompt": "Convert 500 US dollars to Trinidad and Tobago dollars.",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 1.67,
+          "invocations": []
+        },
+        {
+          "id": "p38",
+          "category": "attractions",
+          "relevant": false,
+          "prompt": "What are the top tourist attractions to see in Kenya?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 8.39,
+          "invocations": []
+        },
+        {
+          "id": "p39",
+          "category": "local_transportation",
+          "relevant": false,
+          "prompt": "What's the best way to get from Bangkok airport to the city centre?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 8.91,
+          "invocations": []
+        }
+      ]
+    },
+    "directed": {
+      "model": "claude-sonnet-5-5",
+      "mcpServer": "0.17.4",
+      "mcpTools": [
+        "search-actors",
+        "fetch-actor-details",
+        "call-actor",
+        "get-actor-run",
+        "get-dataset-items",
+        "get-key-value-store-record",
+        "search-apify-docs",
+        "fetch-apify-docs"
+      ],
+      "firstEpisodeAt": "2026-10-08T16:25:55.562208+00:00",
+      "counts": {
+        "relevant": 20,
+        "control": 19,
+        "relevantByCategory": {
+          "cross_source_disagreement": 3,
+          "explicit_comparator": 3,
+          "ambiguous_natural_language": 3,
+          "general_official_advisory": 6,
+          "single_source_wording": 5
+        }
+      },
+      "discovery": {
+        "rate": 95.0,
+        "discovered": 19,
+        "top1": 25.0,
+        "top3": 95.0,
+        "top5": 95.0,
+        "meanRank": 2.47,
+        "medianRank": 3,
+        "promptsWithAnySearch": 20
+      },
+      "selection": {
+        "givenDiscovery": 94.7,
+        "endToEnd": 90.0,
+        "selectedCount": 18,
+        "selectedByTool": {
+          "rhincodontypus/official-travel-advisory-comparator": 18,
+          "jungle_synthesizer/uk-fcdo-foreign-travel-advice-scraper": 1,
+          "maximedupre/us-travel-advisories-scraper": 1
+        }
+      },
+      "invocation": {
+        "validRate": 100.0,
+        "firstAttemptValidRate": 100.0,
+        "perCallValidRate": 100.0,
+        "rejectedCalls": [],
+        "executionSuccessRate": 100.0,
+        "callsWithInventedFields": 0,
+        "wrongDestination": 0
+      },
+      "interpretation": {
+        "correctRate": 55.6,
+        "graded": 18,
+        "errors": {
+          "unknown_US_regional_treated_as_unflagged": 1,
+          "uk_regional_count_wrong": 1,
+          "UK Iraq-border warning misattributed": 2,
+          "10 km limit wrongly attributed to all three governments": 1,
+          "claims all three governments flag regions, but US regional data is unavailable (regionalWarnings null)": 1,
+          "misstated Canada regional advice for Cali": 1,
+          "unknown_regional_presented_as_no_escalation": 1,
+          "unsupported_us_regional_claim": 1,
+          "us_regional_unknown_presented_as_none": 1
+        }
+      },
+      "abstention": {
+        "controls": 19,
+        "falseDiscoveryRate": 15.8,
+        "falseSelectionRate": 0.0,
+        "falseInvocationRate": 0.0,
+        "selectedByTool": {
+          "null": 7,
+          "filip_cicvarek/weather-data-scraper": 2,
+          "expected_diet/visa-checker-by-nationality": 1,
+          "crawlerbros/wayback-machine-search": 1,
+          "jungle_synthesizer/uk-fcdo-foreign-travel-advice-scraper": 1,
+          "apify/rag-web-browser": 1,
+          "rl1987/booking-api-scraper": 1,
+          "jungle_synthesizer/us-state-dept-travel-advisories-scraper": 1,
+          "santamaria-automations/booking-com-scraper": 1,
+          "burbn/tripadvisor-restaurants": 1,
+          "ryanclinton/exchange-rate-tracker": 1,
+          "compass/crawler-google-places": 1
+        }
+      },
+      "economics": {
+        "invocations": 18,
+        "chargedEventCounts": {
+          "apify-actor-start": 18,
+          "destination-lookup": 18
+        },
+        "nominalEventValueUsd": 0.1809,
+        "accountedDestinationLookups": 0,
+        "unexpectedLookupCharges": []
+      },
+      "latency": {
+        "actorRunTimeSecs": {
+          "n": 18,
+          "min": 2.411,
+          "median": 2.9,
+          "mean": 3.012,
+          "p95": 3.725,
+          "max": 4.3
+        },
+        "callActorToolLatencyS": {
+          "n": 18,
+          "min": 4.165,
+          "median": 6.999,
+          "mean": 7.186,
+          "p95": 9.41,
+          "max": 9.934
+        },
+        "episodeElapsedS": {
+          "n": 18,
+          "min": 15.58,
+          "median": 20.155,
+          "mean": 20.431,
+          "p95": 25.46,
+          "max": 29.35
+        }
+      },
+      "competitors": {
+        "outrankedOursCount": {
+          "jungle_synthesizer/us-state-dept-travel-advisories-scraper": 19,
+          "maximedupre/us-travel-advisories-scraper": 19
+        },
+        "selectedOverOursCount": {
+          "maximedupre/us-travel-advisories-scraper": 1
+        }
+      },
+      "rows": [
+        {
+          "id": "p01",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "What is the current US State Department travel advisory level for Trinidad and Tobago, and do the UK and Canada agree?",
+          "searchQueries": [
+            "travel advisory",
+            "State Department travel advisories"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 5,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 20.31,
+          "invocations": [
+            {
+              "runId": "WPRxcRH0n9UiGfdDb",
+              "callError": null,
+              "input": {
+                "destination": "Trinidad and Tobago",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.036,
+              "toolLatencyS": 9.934,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "The US, UK and Canada do not agree on Trinidad and Tobago. The US is the most cautious of the three and the UK is the least.\n\n| Government | Advisory | Last updated |\n|---|---|---|\n| **US State Department** | **Level 3: Reconsider Travel** | 13 Apr 2026 |\n| **UK FCDO** | No advice against travel to the country as a whole | 21 Sep 2026 |\n| **Canada** | \"Exercise a high degree of caution\" | 24 Sep 2026 |\n\n- **US:** The advisory cites crime, terrorism and health risks. The data source has no regional breakdown for the US.\n- **UK:** The FCDO has no advisory against travel to the country or to any region. Its safety pages still cover terrorism, violent crime, drug-assisted robbery and sexual assault, and extreme weather such as hurricanes, earthquakes and volcanic eruptions.\n- **Canada:** The country-wide advice is a high degree of caution. It cites crime, terrorism, fraud, demonstrations and piracy. Canada also says to **avoid non-essential travel** to specific areas because of gang violence and crime:\n  - Beetham Estate Gardens\n  - Cocorite (north of Western Main Road)\n  - Parts of downtown Port of Spain\n  - Laventille\n  - Sea Lots\n\nThe Level 3 figure is as of the last update on 13 April 2026, and the data was retrieved on 8 October 2026. All three governments flag crime and terrorism. They differ on how serious it is for the country overall, and only Canada pins the worst risk to specific neighbourhoods.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "The answer reports each government's native wording and update date accurately, keeps Canada's regional 'avoid non-essential travel' areas separate from its national advice, and states the disagreement the record flags. It describes the missing US regional data as unavailable rather than as no warnings, and never presents normalized scores as official levels."
+          }
+        },
+        {
+          "id": "p02",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Compare the official government travel warnings for Mexico from the US, UK and Canada.",
+          "searchQueries": [
+            "travel advisory",
+            "government travel warnings"
+          ],
+          "discovered": true,
+          "rank": 1,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": null,
+          "elapsedS": 24.17,
+          "invocations": [
+            {
+              "runId": "M2m6TkXMBo0zzb8Us",
+              "callError": null,
+              "input": {
+                "destination": "Mexico",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 4.3,
+              "toolLatencyS": 9.022,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "# Mexico travel advisories: US, UK and Canada\n\nThe data comes from the official feeds of each government, retrieved on 8 Oct 2026.\n\n## Headline comparison\n\n| | **US (State Dept)** | **UK (FCDO)** | **Canada** |\n|---|---|---|---|\n| **National level** | Level 2: Exercise Increased Caution | No advice against travel to the whole country. The status is \"avoid all but essential travel to parts\". | Exercise a high degree of caution |\n| **Regional warnings** | Not available from the feed used | Yes, 13 entries covering 10 states | Yes, one \"Avoid non-essential travel\" list covering 13 states |\n| **Last updated** | 29 May 2026 | 1 Oct 2026 | 8 Oct 2026 |\n| **Risks cited** | Crime, terrorism, kidnapping | Terrorism, crime, kidnapping, political situation, scams, vehicle crime, hurricanes, earthquakes, volcanic eruptions | Crime, organized crime, kidnapping (including virtual kidnapping), demonstrations, border areas, fraud and scams, piracy |\n\n## Regional warnings\n\n**UK: advises against all but essential travel to:**\n- Parts of Baja California: Tijuana city (with transit exceptions) and Tecate.\n- Chihuahua state, except Chihuahua city, the Ciudad Juárez crossing and the Copper Canyon rail route.\n- Sinaloa, except Los Mochis and Mazatlán.\n- Tamaulipas, with limited exceptions.\n- Zacatecas.\n- Southwest Guanajuato.\n- Michoacán, except Morelia and Pátzcuaro.\n- Parts of Jalisco: the south and southwest of Lake Chapala, and northern municipalities.\n- Colima, except Manzanillo.\n- Guerrero, except Zihuatanejo/Ixtapa by air.\n- Parts of Chiapas: the Guatemalan border zone and Highway 199.\n\n**Canada: avoid non-essential travel to:**\n- Chiapas, Chihuahua, Colima, Guanajuato (south), Guerrero, Jalisco (near the Michoacán border), Michoacán, Nayarit (border areas), Nuevo León, Sinaloa, Sonora, Tamaulipas and Zacatecas.\n- Each state has exceptions, such as Morelia, Monterrey, Hermosillo, Tampico and Mazatlán's tourist zones.\n\n## Key takeaways\n\n- **The national headline differs, but the substance is similar.** The US and Canada both give a \"caution\" level for the whole country. The UK has no national-level warning and puts all its restrictions at the regional level.\n- **The UK and Canada largely agree on the regions.** Both flag Chihuahua, Sinaloa, Tamaulipas, Zacatecas, Michoacán, Colima, Guerrero, Guanajuato (south), Jalisco (parts) and Chiapas (parts).\n- **The lists differ in places.** Canada adds Sonora, Nuevo León and Nayarit. The UK adds Baja California (Tijuana and Tecate), which Canada does not list.\n- **Most tourist destinations are not flagged by any government.** Resorts such as Cancún, Mexico City and Puerto Vallarta fall outside the regional warnings.\n- **The US regional detail is missing from this data.** The Level 2 figure is only the national headline. The feed used here doesn't include regional detail. From my own background knowledge, not from this run, the US advisory text also sets higher levels for specific states, so check the full page before relying on the US column. The US advisory is also the oldest of the three, last updated in May 2026.\n\n**Official sources:**\n- US: https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mex.html\n- UK: https://www.gov.uk/foreign-travel-advice/mexico\n- Canada: https://travel.gc.ca/destinations/mexico\n\nAlways check these pages before you travel, since advisories change often.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "fail",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "unknown_US_regional_treated_as_unflagged",
+              "uk_regional_count_wrong"
+            ],
+            "notes": "The answer correctly says US regional detail is unavailable, but then claims tourist destinations are 'not flagged by any government', which treats the unknown US regional data as no warnings. It also miscounts the UK regional entries: the record has 14 entries across 11 states, not 13 entries across 10 states."
+          }
+        },
+        {
+          "id": "p03",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "I'm planning a trip to Turkey next month. Is it safe according to official government advice?",
+          "searchQueries": [
+            "travel advisory",
+            "government travel advice"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 5,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best. I'll run it.",
+          "elapsedS": 17.77,
+          "invocations": [
+            {
+              "runId": "TCqkLs44GfHG6OV3S",
+              "callError": null,
+              "input": {
+                "destination": "Turkey",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.411,
+              "toolLatencyS": 6.6,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Most of Turkey (Türkiye) is open to travel under the official advice from the US, UK and Canada, but all three governments warn against travel near the Syrian and Iraqi borders. I pulled this on 8 Oct 2026, and advisories can change, so check the official pages again before you leave.\n\n| Government | Overall advice | Last updated |\n|---|---|---|\n| 🇺🇸 US State Dept | **Level 2: Exercise Increased Caution** | 9 Jun 2026 |\n| 🇬🇧 UK FCDO | No advice against travel to the country as a whole, but against all travel to parts of it | 21 Sep 2026 |\n| 🇨🇦 Canada | **Exercise a high degree of caution** | 2 Oct 2026 |\n\n**Areas to avoid**\n- **Syria and Iraq borders:** All three governments advise against all travel within about 10 km of the border. The US says \"Do not travel\" to the border region, citing terrorism and armed conflict.\n- **Southeastern provinces:** Canada advises avoiding non-essential travel to Hakkari and Şırnak because of cross-border terrorist activity.\n\n**Risks the governments mention**\n- **Terrorism:** All three list it.\n- **Crime and scams:** The UK and Canada list crime. Canada also warns about fraud and card or ATM scams.\n- **Demonstrations and political unrest:** The UK and Canada mention these.\n- **Natural hazards:** The UK lists earthquakes, wildfires and flooding. Wildfires and flooding can matter depending on the season and region.\n- **Arbitrary detention:** The US lists this as a risk.\n\n**Overall**\nThe standard tourist areas (Istanbul, Cappadocia, the Aegean and Mediterranean coasts) are not under any \"avoid\" advisory. The governments advise normal to increased caution there.\n\n**Before you go**\n- Stay away from the southeast border regions.\n- Check your own government's page for entry requirements and any recent changes.\n- Consider travel insurance that covers earthquakes and natural disasters.\n- Register with your embassy's traveler program if one is available.\n\n**Official sources**\n- US: https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tur.html\n- UK: https://www.gov.uk/foreign-travel-advice/turkey\n- Canada: https://travel.gc.ca/destinations/turkiye\n\nIf you're from another country, tell me and I can point you to the right place. The tool I used only covers the US, UK and Canada.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "fail",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "UK Iraq-border warning misattributed",
+              "10 km limit wrongly attributed to all three governments"
+            ],
+            "notes": "The national levels are reported faithfully: US Level 2, UK with no numbered level, and Canada's own wording. However, the answer says all three governments advise against travel within about 10 km of both the Syrian and Iraqi borders, when the UK warning covers only the Syria border and the US warning names a border region without a 10 km limit."
+          }
+        },
+        {
+          "id": "p04",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Get a machine-readable travel risk level for Kenya that I can feed into our itinerary approval workflow.",
+          "searchQueries": [
+            "travel advisory",
+            "travel risk level country"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "rhincodontypus/official-travel-advisory-comparator"
+          ],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": null,
+          "elapsedS": 21.97,
+          "invocations": [
+            {
+              "runId": "MZplq156GXUeKNR56",
+              "callError": null,
+              "input": {
+                "destination": "Kenya",
+                "sources": [
+                  "US",
+                  "UK",
+                  "CA"
+                ],
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": [
+                "US",
+                "UK",
+                "CA"
+              ],
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.851,
+              "toolLatencyS": 6.475,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Kenya's national risk level is **2 of 4 (increased caution)**. Three governments' advisories were checked, and all three flag regions where they advise against travel. Your workflow should treat those regions as high risk.\n\nI used the Official Travel Advisory Comparator Actor, which pulls the US State Department, UK FCDO and Government of Canada advisories. The data was checked on 2026-10-08.\n\n```json\n{\n  \"destination\": \"Kenya\",\n  \"iso2\": \"KE\",\n  \"iso3\": \"KEN\",\n  \"checkedAt\": \"2026-10-08T16:26:46Z\",\n  \"overallRiskLevel\": 2,\n  \"overallRiskLabel\": \"increased_caution\",\n  \"highestRegionalRiskLevel\": 4,\n  \"hasRegionalEscalation\": true,\n  \"materialDisagreement\": false,\n  \"scale\": \"1=normal precautions, 2=increased caution, 3=avoid non-essential travel, 4=avoid all travel\",\n  \"sources\": [\n    {\"source\": \"US\", \"nativeLevel\": \"Level 2 - Exercise Increased Caution\", \"overall\": 2, \"regionalMax\": null, \"updated\": \"2026-07-28\"},\n    {\"source\": \"UK\", \"nativeLevel\": \"Advises against all travel / all but essential travel to parts of the country\", \"overall\": 1, \"regionalMax\": 4, \"updated\": \"2026-10-07\"},\n    {\"source\": \"CA\", \"nativeLevel\": \"Exercise a high degree of caution\", \"overall\": 2, \"regionalMax\": 4, \"updated\": \"2026-10-07\"}\n  ],\n  \"riskCategories\": [\"crime\", \"terrorism\", \"kidnapping\", \"civil_unrest\", \"health\", \"maritime\", \"natural_disaster\", \"border_security\"],\n  \"restrictedRegions\": [\n    {\"severity\": 4, \"area\": \"Kenya-Somalia border counties: Mandera, Wajir, Garissa and Lamu (excluding Lamu Island and Manda Island, and some towns)\", \"flaggedBy\": [\"UK\", \"CA\"]},\n    {\"severity\": 4, \"area\": \"Turkana and Marsabit counties, within 110 km of the South Sudan and Ethiopia borders\", \"flaggedBy\": [\"CA\"]},\n    {\"severity\": 4, \"area\": \"Within 50 km of the coast of Tana River County and northern Kilifi County\", \"flaggedBy\": [\"CA\"]},\n    {\"severity\": 3, \"area\": \"Garissa Town, Tana River County north of Saka, and the east coast within 15 km between the Tana and Galana rivers\", \"flaggedBy\": [\"UK\"]},\n    {\"severity\": 3, \"area\": \"Kibera, Nairobi\", \"flaggedBy\": [\"CA\"]}\n  ]\n}\n```\n\n- **Overall level:** The UK's overall score of 1 only means it has no country-wide warning. It does advise against travel to parts of Kenya, so I used the highest overall score across sources (US and Canada both give 2).\n- **Itinerary rules:** I'd approve itineraries elsewhere in Kenya with standard caution. I'd route any itinerary touching a severity 4 region to manual review or block it. Severity 3 regions probably need review too.\n- **Normalized scale:** The 1–4 scale is the Actor's own normalization, not an official level. The official wording for each source is in the `nativeLevel` fields.\n- **Freshness:** The US advisory was last updated in July 2026, so it's older than the UK and Canadian ones. The US feed also has no regional detail.\n- **Cost:** The lookup cost about $0.01.\n\nIf you want, I can also pull CDC health notices for Kenya.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "fail",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "claims all three governments flag regions, but US regional data is unavailable (regionalWarnings null)"
+            ],
+            "notes": "The opening says all three governments flag regions where they advise against travel. Only the UK and Canada have regional warnings; the US regional coverage is unavailable, which the answer itself later admits. The native wording, the normalized-scale caveat and the separation of overall vs regional severity are otherwise handled correctly (the ~$0.01 cost figure is not in the record)."
+          }
+        },
+        {
+          "id": "p05",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Does the FCDO advise against travel to any part of Thailand?",
+          "searchQueries": [
+            "FCDO travel advice",
+            "gov.uk foreign travel advice"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 2,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "jungle_synthesizer/uk-fcdo-foreign-travel-advice-scraper",
+          "oursSelected": false,
+          "selectionRationale": "The scraper allows a country filter; I'll use it.",
+          "elapsedS": 3.17,
+          "invocations": []
+        },
+        {
+          "id": "p06",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Our duty-of-care policy blocks bookings where any of the Five Eyes governments says 'avoid all travel'. Check Colombia.",
+          "searchQueries": [
+            "travel advisory",
+            "government travel advisories",
+            "Smartraveller Australia",
+            "New Zealand SafeTravel",
+            "Australia travel advice",
+            "New Zealand travel"
+          ],
+          "discovered": true,
+          "rank": 1,
+          "competitorsReturned": 16,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "rhincodontypus/official-travel-advisory-comparator"
+          ],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": null,
+          "elapsedS": 29.35,
+          "invocations": [
+            {
+              "runId": "xHLcw7MhAhxmuYTQr",
+              "callError": null,
+              "input": {
+                "destination": "Colombia",
+                "sources": [
+                  "US",
+                  "UK",
+                  "CA"
+                ],
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": [
+                "US",
+                "UK",
+                "CA"
+              ],
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.161,
+              "toolLatencyS": 6.808,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "**Colombia is not blocked at the country level by the three governments I could check. It does trigger the \"avoid all travel\" wording in parts of the country, and I couldn't check Australia or New Zealand.**\n\n| Government | Nationwide advice | Regional advice |\n|---|---|---|\n| 🇺🇸 US State Dept | Level 3, \"Reconsider Travel\" (updated 2026-03-31) | The data source doesn't provide regional detail. |\n| 🇬🇧 UK FCDO | \"Avoid all but essential travel\" to parts of the country only (updated 2026-10-06) | Advises against all but essential travel to the Venezuela border area, Norte de Santander, Arauca, the Pacific coast and Chocó, Guaviare, parts of Caquetá and Meta, Cauca, and parts of Putumayo. It doesn't use \"against all travel\" anywhere. |\n| 🇨🇦 Canada | \"Exercise a high degree of caution\" (updated 2026-10-06) | **\"Avoid all travel\"** to a list of border departments and areas: Arauca, Caquetá (except Florencia), Cauca (except Popayán), Chocó (except Bahía Solano, Capurganá and Nuquí), Norte de Santander (except Cúcuta), the Venezuela, Panama and Ecuador border zones, Tumaco and Buenaventura. It advises \"avoid non-essential travel\" to other regions. |\n| 🇦🇺 Australia | Not checked | Not checked |\n| 🇳🇿 New Zealand | Not checked | Not checked |\n\n**What this means for your policy**\n- **Country-level rule:** No checked government has issued a nationwide \"avoid all travel\" for Colombia, so a booking for the country as a whole isn't blocked.\n- **Regional rule:** If your policy also covers regional advisories, Canada's \"Avoid all travel\" areas would block bookings to those places. Cities such as Bogotá, Medellín, Cartagena and Cali aren't on Canada's \"avoid all travel\" list, though Cali sits in a wider \"avoid non-essential travel\" region.\n- **Disagreement:** The governments' overall levels differ (US 3, Canada 2, UK 1 on a common 1–4 scale). The UK scale has no national middle level, so its overall figure understates its regional warnings.\n\n**Gaps**\n- Australia (Smartraveller) and New Zealand (SafeTravel) are Five Eyes members, but I found no Actor that covers them. Check those two manually before treating Colombia as clear.\n- The US data comes from an RSS feed with no regional breakdown. Read the full advisory at travel.state.gov for any \"Do Not Travel\" areas.\n\nThe check ran on 2026-10-08 using the Official Travel Advisory Comparator Actor. Sources: [US](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.col.html), [UK](https://www.gov.uk/foreign-travel-advice/colombia), [Canada](https://travel.gc.ca/destinations/colombia).",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "fail"
+            },
+            "correct": false,
+            "errors": [
+              "misstated Canada regional advice for Cali"
+            ],
+            "notes": "The answer says Cali sits in Canada's 'avoid non-essential travel' region, but the record lists Valle del Cauca 'excluding the cities of Buga, Cali, Palmira', so Cali is explicitly excluded. Otherwise the answer handles native wording, the labelling of the normalized scale, the regional/national split, the null US regional data and the disagreement correctly."
+          }
+        },
+        {
+          "id": "p07",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Which regions of Ukraine do Canada and the UK say to avoid?",
+          "searchQueries": [
+            "travel advisory",
+            "government travel advice"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 5,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator Actor fits best.",
+          "elapsedS": 17.58,
+          "invocations": [
+            {
+              "runId": "I1zo2pH3ES82Ih9of",
+              "callError": null,
+              "input": {
+                "destination": "Ukraine",
+                "sources": [
+                  "uk",
+                  "canada"
+                ],
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": [
+                "uk",
+                "canada"
+              ],
+              "sourcesExpected": [
+                "UK",
+                "CA"
+              ],
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.945,
+              "toolLatencyS": 8.8,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Canada tells travellers to avoid all travel to the whole of Ukraine. The UK tells them to avoid all travel to most of it and all but essential travel to parts of the west.\n\n**Canada** (updated 24 Sep 2026)\n- The advice is \"Avoid all travel\" for the entire country.\n- The data had no region-specific warnings, because the whole country is already at the top level.\n\n**UK FCDO** (updated 2 Oct 2026)\n- **Avoid all travel:**\n  - Crimea.\n  - Areas within 50 km of the Belarus border in Volyn, Rivne and Zhytomyr.\n  - \"All other regions of Ukraine\", except the western regions listed below.\n- **Avoid all but essential travel:** the western regions of Zakarpattia, Ivano-Frankivsk, Ternopil, Chernivtsi, Lviv, Volyn, Rivne and Zhytomyr.\n- The Belarus border strip within Volyn, Rivne and Zhytomyr is the exception. The UK advises against all travel there, even though those regions are otherwise \"all but essential\".\n\nThe two governments differ mainly on western Ukraine. Canada says to avoid all travel there. The UK only says to avoid all but essential travel. Both say to avoid all travel to Crimea and the rest of the country.\n\nSources: https://www.gov.uk/foreign-travel-advice/ukraine and https://travel.gc.ca/destinations/ukraine. Check these before you travel, since advisories change often.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "The answer reports Canada's 'Avoid all travel' and the UK FCDO's regional wording faithfully, attributes both to the correct sources, and acknowledges the material disagreement over western Ukraine. One minor issue: it explains Canada's empty regional list by saying the whole country is already at the top level, but the record does not give that reason."
+          }
+        },
+        {
+          "id": "p08",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Is there a Level 4 Do Not Travel advisory for Haiti right now?",
+          "searchQueries": [
+            "travel advisory",
+            "State Department travel advisories"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 5,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "selected": "maximedupre/us-travel-advisories-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 5.7,
+          "invocations": []
+        },
+        {
+          "id": "p09",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Check official travel advisories for Ivory Coast before I approve this employee's business trip.",
+          "searchQueries": [
+            "travel advisory",
+            "Ivory Coast travel advisory"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 4,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best. I'll run it.",
+          "elapsedS": 20.32,
+          "invocations": [
+            {
+              "runId": "22V5cjNcIyl4op4jr",
+              "callError": null,
+              "input": {
+                "destination": "Ivory Coast",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.882,
+              "toolLatencyS": 7.557,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "# Côte d'Ivoire (Ivory Coast) travel advisories\n\nChecked on 8 Oct 2026 against the official US, UK and Canadian government sources.\n\n| Source | Nationwide advice | Last updated |\n|---|---|---|\n| **US State Dept** | **Level 2: Exercise Increased Caution** | 18 Feb 2026 |\n| **UK FCDO** | No advice against travel to the country as a whole, but **advises against all travel to parts of it** | 29 May 2026 |\n| **Canada** | **Exercise a high degree of caution** | 24 Sep 2026 |\n\nThe three governments don't materially disagree about the country as a whole. All of them are at the \"normal to increased caution\" end.\n\n## Regional warnings (UK and Canada)\n- **Borders with Burkina Faso and Mali: avoid all travel.**\n  - The UK covers the area within 40 km of the borders, northern Zanzan and Savanes provinces, and Comoé National Park.\n  - Canada covers the area within 50 km of the borders, because of terrorist activity.\n- **Border with Liberia: avoid all but essential travel.**\n  - The UK covers the area within 20 km of the border, because of the risk of serious violence by local militias.\n  - Canada covers the area within 25 km of the border (Cavally, San Pedro and Tonkpi regions), because of crime, insecurity and inter-community conflict.\n- The US source I could access gave no regional detail, so I couldn't check its regional guidance.\n\n## Risks the advisories name\n- **Crime:** street, vehicle and violent crime, plus credit card and ATM fraud.\n- **Terrorism.**\n- **Civil unrest:** political tension and demonstrations.\n- **Health.**\n- **Natural hazards:** flooding and extreme weather.\n- **Piracy:** in nearby waters, which is only relevant to maritime travel.\n\n## For your approval decision\n- Travel to the main business areas is generally acceptable with standard precautions. Abidjan is the usual hub, though the data didn't name specific cities.\n- **Check the itinerary.** Approval should depend on the employee staying out of the northern border zones and the Liberia border area.\n- Reasonable conditions to attach:\n  - Security briefing before departure.\n  - Vetted ground transport and accommodation.\n  - Travel insurance with medical coverage.\n  - Check-in procedures.\n- The US advisory is the oldest, from February. Look at the live pages again close to departure, since advisories can change.\n\nOfficial sources:\n- [US State Dept](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.civ.html)\n- [UK FCDO](https://www.gov.uk/foreign-travel-advice/cote-d-ivoire)\n- [Government of Canada](https://travel.gc.ca/destinations/cote-d-ivoire-ivory-coast)\n\nI can also check the health notices or compare other destinations if the trip has stops elsewhere.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "The answer faithfully reports each government's native wording without inventing a UK level, keeps regional warnings separate, states that US regional data is unavailable, and correctly says there is no material disagreement. Two minor imprecisions: Canada's 'Avoid non-essential travel' is merged with the UK's 'all but essential' wording (equivalent meaning), and 'standard precautions' slightly understates the US and Canadian increased-caution advice."
+          }
+        },
+        {
+          "id": "p10",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "Do the US and Canadian governments disagree about how dangerous France is?",
+          "searchQueries": [
+            "travel advisory",
+            "travel.state.gov advisory"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 4,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 17.03,
+          "invocations": [
+            {
+              "runId": "X2etUm16gxxQf58us",
+              "callError": null,
+              "input": {
+                "destination": "France",
+                "sources": [
+                  "us",
+                  "canada"
+                ],
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": [
+                "us",
+                "canada"
+              ],
+              "sourcesExpected": [
+                "US",
+                "CA"
+              ],
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.59,
+              "toolLatencyS": 7.446,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "No, they basically agree. Both governments put France at the second of four levels, which is \"be more careful than usual\" and well short of \"avoid travel.\"\n\n| | US State Department | Government of Canada |\n|---|---|---|\n| **Advisory** | Level 2: Exercise Increased Caution | \"Exercise a high degree of caution\" |\n| **Risks named** | Terrorism, civil unrest | Terrorism, crime (petty and violent, fraud, card/ATM fraud), demonstrations |\n| **Last updated** | 2025-05-28 | 2026-10-05 |\n\n- **Same overall level:** The comparison tool puts both at 2 on its 1–4 scale, so it flags no material disagreement.\n- **Different wording:** The two countries use different scales. The US uses numbered levels, and Canada uses named categories. Even so, the two advisories line up.\n- **Different emphasis:** Canada's advisory spends more space on crime, especially petty theft and fraud. The US summary cites only terrorism and unrest. That difference is in what they highlight, not in how dangerous they rate France.\n- **Regional warnings:** Canada lists none for France. The tool couldn't get regional detail from the US source, so I can't say whether the US has any.\n- **Staleness:** The US advisory was last updated in May 2025, while Canada's was updated this month. The US data may be older, but the levels match.\n\nSource: the Actor `rhincodontypus/official-travel-advisory-comparator`, which pulls from travel.state.gov and travel.gc.ca.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "Native wording is preserved for both governments: US 'Level 2: Exercise Increased Caution' and Canada's named category. The 1–4 value is attributed to the comparison tool, Canada's empty regional list is kept separate from the US's unavailable regional data, and the differences in emphasis are not presented as a disagreement about severity."
+          }
+        },
+        {
+          "id": "p11",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Give me a structured country travel risk record for Hong Kong with source URLs.",
+          "searchQueries": [
+            "travel advisory",
+            "country travel risk"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The Comparator fits best: it returns normalized severity, risk categories and source URLs for one destination.",
+          "elapsedS": 25.46,
+          "invocations": [
+            {
+              "runId": "37ZhJnlI44JCkvR4V",
+              "callError": null,
+              "input": {
+                "destination": "Hong Kong",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.853,
+              "toolLatencyS": 7.64,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Here is the Hong Kong travel risk record. It comes from the Official Travel Advisory Comparator Actor, checked on 2026-10-08. All three official sources (US, UK, Canada) were retrieved successfully.\n\n```json\n{\n  \"country\": \"Hong Kong\",\n  \"iso2\": \"HK\",\n  \"iso3\": \"HKG\",\n  \"checkedAt\": \"2026-10-08T16:41:51Z\",\n  \"overall\": {\n    \"lowestSeverity\": 1,\n    \"highestSeverity\": 2,\n    \"severitySpread\": 1,\n    \"materialDisagreement\": false,\n    \"sourcesAtHighestSeverity\": [\"US\", \"CA\"],\n    \"regionalEscalation\": false\n  },\n  \"advisories\": [\n    {\n      \"source\": \"U.S. Department of State\",\n      \"nativeLevel\": \"Level 2\",\n      \"nativeAdvice\": \"Exercise Increased Caution\",\n      \"normalizedSeverity\": 2,\n      \"riskCategories\": [\"arbitrary_detention\"],\n      \"nativeRiskLabels\": [\"arbitrary enforcement of local laws\"],\n      \"regionalWarnings\": \"unavailable from this source\",\n      \"sourceUpdatedAt\": \"2026-09-04\",\n      \"sourceUrl\": \"https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hkg.html\",\n      \"retrievalUrl\": \"https://travel.state.gov/_res/rss/TAsTWs.xml\"\n    },\n    {\n      \"source\": \"U.K. Foreign, Commonwealth & Development Office\",\n      \"nativeLevel\": \"none\",\n      \"nativeAdvice\": \"No advice against travel to the whole country\",\n      \"normalizedSeverity\": 1,\n      \"riskCategories\": [\"crime\", \"terrorism\", \"civil_unrest\", \"natural_disaster\"],\n      \"nativeRiskLabels\": [\"Terrorism\", \"Political situation\", \"Protests and civil unrest\", \"Crime\", \"Extreme weather and natural disasters\", \"Typhoons\"],\n      \"regionalWarnings\": [],\n      \"sourceUpdatedAt\": \"2026-04-01T15:59:28Z\",\n      \"sourceUrl\": \"https://www.gov.uk/foreign-travel-advice/hong-kong\",\n      \"retrievalUrl\": \"https://www.gov.uk/api/content/foreign-travel-advice/hong-kong\"\n    },\n    {\n      \"source\": \"Government of Canada\",\n      \"nativeLevel\": \"advisory-state 1\",\n      \"nativeAdvice\": \"Exercise a high degree of caution\",\n      \"normalizedSeverity\": 2,\n      \"riskCategories\": [\"crime\", \"civil_unrest\"],\n      \"nativeRiskLabels\": [\"Crime\", \"Petty crime\", \"Violent crime\", \"Fraud\", \"Demonstrations\"],\n      \"regionalWarnings\": [],\n      \"sourceUpdatedAt\": \"2026-09-24T12:53:00Z\",\n      \"sourceUrl\": \"https://travel.gc.ca/destinations/hong-kong\",\n      \"retrievalUrl\": \"https://data.international.gc.ca/travel-voyage/cta-cap-hk.json\"\n    }\n  ]\n}\n```\n\n- **Overall risk:** The overall risk is low to moderate. The US and Canada advise increased caution, and the UK has no advice against travel. The sources don't materially disagree.\n- **Severity scale:** The normalized severity is the Actor's own 1–4 scale (1 = normal precautions, 4 = avoid all travel). It is not any government's official level, so use the native level and advice fields for official wording.\n- **Risk categories:** The categories are inferred from advisory text and section headings, so the lists differ in length by source. The US lists only arbitrary enforcement of local laws. The UK lists terrorism, unrest, crime and typhoons. Canada lists crime and demonstrations.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "fail",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "unknown_regional_presented_as_no_escalation"
+            ],
+            "notes": "The summary block sets \"regionalEscalation\": false, but the record's comparison.highestRegionalSeverity is null and the US hasRegionalEscalation is null (regional data unavailable), so an unknown is reported as no escalation. The rest is faithful: the UK has no numbered level, normalized severity is labelled as the Actor's own scale, and URLs are correctly attributed, though the UK nativeAdvice is paraphrased from the basis field where the record has null."
+          }
+        },
+        {
+          "id": "p12",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "Travel warning status for Côte d'Ivoire according to the Government of Canada and the State Department.",
+          "searchQueries": [
+            "travel advisory",
+            "travel.state.gov advisories"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 4,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator actor fits best.",
+          "elapsedS": 15.58,
+          "invocations": [
+            {
+              "runId": "G9Dms8KzZQiY5oaMq",
+              "callError": null,
+              "input": {
+                "destination": "Côte d'Ivoire",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": [
+                "US",
+                "CA"
+              ],
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.641,
+              "toolLatencyS": 5.873,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Both governments advise some caution for Côte d'Ivoire as a whole. Canada also warns against travel to the border areas.\n\n## Government of Canada: \"Exercise a high degree of caution\"\n- Source: [travel.gc.ca](https://travel.gc.ca/destinations/cote-d-ivoire-ivory-coast). Last updated 24 Sep 2026.\n- Risks it names: crime (petty and violent), terrorism, demonstrations, fraud, and piracy.\n- **Regional warnings:**\n  - **Avoid all travel** to within 50 km of the borders with Mali and Burkina Faso, because of terrorist activity.\n  - **Avoid non-essential travel** to the Cavally, San Pedro and Tonkpi regions, within 25 km of the Liberian border. The reasons given are crime, insecurity and recurrent inter-community conflicts.\n\n## U.S. State Department: Level 2, \"Exercise Increased Caution\"\n- Source: [travel.state.gov](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.civ.html). Last updated 18 Feb 2026.\n- Risks it names: crime, terrorism, civil unrest, health, and piracy in nearby waters.\n- The data source I used doesn't include regional detail for the U.S., so I can't say whether the State Department has area-specific warnings.\n\n## Comparison\nCanada and the U.S. are at the same overall level, which is the second of four. Neither advises against travel to the whole country.\n\nI also pulled the UK advice, which you didn't ask for. It advises against all travel to parts of the country but has no country-wide warning. Those parts are the Mali and Burkina Faso border areas and Comoé National Park. It also advises against all but essential travel within 20 km of the Liberian border.\n\nThe Actor pulls from the official government feeds. Check the linked pages before you travel, since advisories change.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "Canada's and the US's native wording are reported faithfully, regional warnings are kept separate from national advice, and the unavailable US regional data is disclosed rather than treated as 'no warnings'. The 'second of four' phrasing matches both governments' own four-tier scales, and the optional UK summary leaves out a few details (Northern Zanzan/Savanes provinces, the 40 km distance) but contains no errors."
+          }
+        },
+        {
+          "id": "p13",
+          "category": "flights",
+          "relevant": false,
+          "prompt": "Book me a cheap flight from Toronto to Mexico City next Friday.",
+          "searchQueries": [
+            "flights",
+            "Google Flights"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 13,
+          "competitorsAhead": [],
+          "detailsFetched": [
+            "lergassy/google-flights-scraper"
+          ],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 11.76,
+          "invocations": []
+        },
+        {
+          "id": "p14",
+          "category": "weather",
+          "relevant": false,
+          "prompt": "What's the weather forecast for Bangkok this weekend?",
+          "searchQueries": [
+            "weather forecast",
+            "weather"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 7,
+          "competitorsAhead": [],
+          "detailsFetched": [
+            "filip_cicvarek/weather-data-scraper"
+          ],
+          "selected": "filip_cicvarek/weather-data-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 4.55,
+          "invocations": []
+        },
+        {
+          "id": "p15",
+          "category": "visas",
+          "relevant": false,
+          "prompt": "Do I need a visa to visit Kenya with a Canadian passport?",
+          "searchQueries": [
+            "visa requirements",
+            "Kenya eTA travel"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 5,
+          "competitorsAhead": [],
+          "detailsFetched": [
+            "expected_diet/visa-checker-by-nationality"
+          ],
+          "selected": "expected_diet/visa-checker-by-nationality",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 5.27,
+          "invocations": []
+        },
+        {
+          "id": "p16",
+          "category": "advisory_history",
+          "relevant": false,
+          "prompt": "Show me how the US travel advisory for Mexico changed over the last five years.",
+          "searchQueries": [
+            "travel advisory",
+            "State Department travel advisories",
+            "Wayback Machine"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 9,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "crawlerbros/wayback-machine-search"
+          ],
+          "selected": "crawlerbros/wayback-machine-search",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 10.37,
+          "invocations": []
+        },
+        {
+          "id": "p17",
+          "category": "alerts_monitoring",
+          "relevant": false,
+          "prompt": "Alert me by email whenever the UK changes its travel advice for Israel.",
+          "searchQueries": [
+            "UK travel advice",
+            "gov.uk foreign travel advice"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 3,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "jungle_synthesizer/uk-fcdo-foreign-travel-advice-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 3.6,
+          "invocations": []
+        },
+        {
+          "id": "p18",
+          "category": "street_level_safety",
+          "relevant": false,
+          "prompt": "Is this neighbourhood in Paris safe to walk at night?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 6.08,
+          "invocations": []
+        },
+        {
+          "id": "p19",
+          "category": "unsupported_government",
+          "relevant": false,
+          "prompt": "What does Germany's Federal Foreign Office say about travel to Egypt?",
+          "searchQueries": [
+            "Auswärtiges Amt travel advisory",
+            "travel advisory",
+            "Germany travel warning",
+            "rag-web-browser"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "apify/rag-web-browser",
+          "oursSelected": false,
+          "selectionRationale": "Es gibt keinen speziellen Actor für das Auswärtige Amt. Deshalb rufe ich die offizielle Seite mit dem RAG Web Browser ab.",
+          "elapsedS": 6.49,
+          "invocations": []
+        },
+        {
+          "id": "p20",
+          "category": "hotels",
+          "relevant": false,
+          "prompt": "Find hotels in Nairobi with good security ratings.",
+          "searchQueries": [
+            "hotels",
+            "Booking.com hotels"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 8,
+          "competitorsAhead": [],
+          "detailsFetched": [
+            "rl1987/booking-api-scraper"
+          ],
+          "selected": "rl1987/booking-api-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 6.0,
+          "invocations": []
+        },
+        {
+          "id": "p21",
+          "category": "bulk_ranking",
+          "relevant": false,
+          "prompt": "Rank every country in Africa by travel risk.",
+          "searchQueries": [
+            "travel advisory",
+            "travel risk"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper"
+          ],
+          "selected": "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 4.68,
+          "invocations": []
+        },
+        {
+          "id": "p22",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Summarize the official US, UK and Canadian advice on travelling to Colombia's Venezuelan border.",
+          "searchQueries": [
+            "travel advisory",
+            "web browser RAG"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 22.5,
+          "invocations": [
+            {
+              "runId": "CFhreWaCNFOkUsE9i",
+              "callError": null,
+              "input": {
+                "destination": "Colombia",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.918,
+              "toolLatencyS": 8.584,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "# Official advice on Colombia's Venezuelan border\n\nI pulled this from the US, UK and Canadian government sources on 8 Oct 2026. The three governments disagree on how risky the border is, and the US data didn't include any border-specific detail.\n\n## 🇺🇸 United States (State Department): Level 3, \"Reconsider Travel\"\n- This covers the whole country. It was last updated 31 March 2026.\n- The risks it names are crime, terrorism, civil unrest, kidnapping and natural disasters.\n- **Border detail:** The feed I used had no regional breakdown, so I can't tell you what the US says about the Venezuelan border specifically. Check the full advisory: [travel.state.gov](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.col.html)\n\n## 🇬🇧 United Kingdom (FCDO): advises against all but essential travel to parts of the country\n- The UK doesn't advise against travel to Colombia as a whole. Its advice was updated 6 Oct 2026.\n- **Venezuelan border:** it advises against all but essential travel to:\n  - all of Norte de Santander, including Cúcuta\n  - all of Arauca\n  - the municipality of Puerto Carreño in Vichada\n  - anywhere within 5 km of the rest of the Venezuelan border\n- Other areas under the same advice include the Pacific coast and Panama border, parts of central Colombia, Cauca, the Ecuador border zone and parts of Putumayo.\n- Risks it lists include terrorism, crime, kidnapping, protests, landmines and natural hazards.\n- Source: [gov.uk](https://www.gov.uk/foreign-travel-advice/colombia)\n\n## 🇨🇦 Canada: \"Exercise a high degree of caution\" nationally, with the strictest border advice of the three\n- This was updated 6 Oct 2026.\n- **Avoid all travel** to:\n  - Arauca\n  - Norte de Santander, except the city of Cúcuta\n  - areas within 50 km of the Venezuelan border, except Cúcuta\n  - the reason given is kidnapping and violence from illegal armed groups and criminal organizations\n- **Avoid non-essential travel** to Cúcuta city and to Vichada and Guainía, which are the other border-area departments.\n- Where Canada makes exceptions to its \"avoid all travel\" areas, it says to travel by air.\n- Source: [travel.gc.ca](https://travel.gc.ca/destinations/colombia)\n\n## Comparison\n\n| | US | UK | Canada |\n|---|---|---|---|\n| National level | Reconsider travel | Normal (with regional warnings) | High caution (with regional warnings) |\n| Venezuelan border | Not in the data I got | Avoid all but essential travel | Avoid all travel (Cúcuta: avoid non-essential) |\n| Norte de Santander / Arauca | Not in the data I got | Avoid all but essential | Avoid all (Cúcuta: avoid non-essential) |\n\n## Takeaways\n- The UK and Canada both single out Norte de Santander and Arauca. Canada's wording is stricter, and it treats Cúcuta as a lesser risk than the rest of Norte de Santander.\n- The main risks cited are kidnapping and violence from armed groups.\n- Check the official pages again before you travel, since these advisories change often. Also look at the full US advisory for its border detail.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "All three governments' advice is reported in their native wording, regional border warnings are kept separate from national advice, and the missing US regional data is flagged as unavailable rather than as 'no warnings'. Minor quibbles: the table's 'Normal' label for the UK is a paraphrase rather than FCDO wording, and calling Vichada and Guainía 'the other border-area departments' ignores other departments on the Venezuelan border, such as La Guajira and Cesar."
+          }
+        },
+        {
+          "id": "p23",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Before generating this itinerary for Türkiye, check whether any official government travel warning applies.",
+          "searchQueries": [
+            "travel advisory",
+            "government travel warning"
+          ],
+          "discovered": true,
+          "rank": 1,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best. Türkiye may need to be entered as \"Turkey\".",
+          "elapsedS": 20.0,
+          "invocations": [
+            {
+              "runId": "edxcGmp1oNe1eYIiW",
+              "callError": null,
+              "input": {
+                "destination": "Turkey",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.434,
+              "toolLatencyS": 6.239,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Türkiye has no nationwide \"do not travel\" warning. All three governments I checked do warn against travel to certain border areas. I pulled the advisories on 8 Oct 2026 from the US, UK and Canadian governments.\n\n| Government | Nationwide advice | Last updated |\n|---|---|---|\n| 🇺🇸 US State Department | **Level 2: Exercise Increased Caution** | 9 Jun 2026 |\n| 🇬🇧 UK FCDO | **No nationwide warning.** The advice is against all travel to parts of the country only. | 21 Sep 2026 |\n| 🇨🇦 Government of Canada | **Exercise a high degree of caution** | 2 Oct 2026 |\n\n**Regional warnings to keep out of the itinerary**\n- **Syria and Iraq border areas:** All three governments say not to travel there. The UK and Canada define this as within 10 km of the border. The US names the border region with Syria and Iraq. The reasons given are terrorism and armed conflict.\n- **Hakkari and Şırnak provinces (southeast):** Canada advises avoiding non-essential travel because of cross-border terrorist activity. The other two sources didn't list these provinces separately.\n\n**Risks the advisories name**\n- **Terrorism:** All three governments mention it.\n- **Crime:** The UK and Canada flag it, including card, ATM and scam fraud.\n- **Demonstrations and political situation:** The UK and Canada mention these.\n- **Natural hazards:** The UK lists earthquakes, wildfires and flooding.\n- **Arbitrary detention:** The US mentions this.\n\n**For the itinerary:** The usual tourist areas aren't covered by the regional warnings. These include Istanbul, Cappadocia, the Aegean and Mediterranean coasts, Ephesus and Pamukkale. I'd stay away from the southeastern border zones. I'd also plan around wildfire season in summer and earthquake awareness.\n\nAdvisories can change quickly, so check the official pages again before you book or leave:\n- [US](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tur.html)\n- [UK](https://www.gov.uk/foreign-travel-advice/turkey)\n- [Canada](https://travel.gc.ca/destinations/turkiye)\n\nI only checked these three governments. Tell me your dates, interests and starting city, and I'll build the itinerary around these warnings.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "fail",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "UK Iraq-border warning misattributed"
+            ],
+            "notes": "The answer says all three governments warn against the Syria and Iraq border areas and that the UK defines this as within 10 km. The UK record covers only the border with Syria; only Canada's 10 km warning includes Iraq. Native wording, the national-vs-regional distinction and source completeness are otherwise handled correctly."
+          }
+        },
+        {
+          "id": "p24",
+          "category": "explicit_comparator",
+          "relevant": true,
+          "prompt": "Compare U.S., U.K., and Canadian travel advisories for Trinidad and Tobago.",
+          "searchQueries": [
+            "travel advisory",
+            "travel advisories government"
+          ],
+          "discovered": true,
+          "rank": 1,
+          "competitorsReturned": 6,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [
+            "rhincodontypus/official-travel-advisory-comparator"
+          ],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": null,
+          "elapsedS": 17.42,
+          "invocations": [
+            {
+              "runId": "M6lTZe8w8bxofsw7t",
+              "callError": null,
+              "input": {
+                "destination": "Trinidad and Tobago",
+                "sources": [
+                  "US",
+                  "UK",
+                  "CA"
+                ],
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": [
+                "US",
+                "UK",
+                "CA"
+              ],
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.47,
+              "toolLatencyS": 4.165,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "The three governments disagree on Trinidad and Tobago. The U.S. is the most cautious, Canada is in the middle, and the U.K. is the least cautious.\n\n| | 🇺🇸 U.S. State Dept | 🇨🇦 Government of Canada | 🇬🇧 U.K. FCDO |\n|---|---|---|---|\n| **Overall advice** | **Level 3: Reconsider Travel** | **Exercise a high degree of caution** | **No advisory against travel** (no \"against all/all but essential travel\" warning) |\n| **Normalized severity (1–4)** | 3 | 2 (3 in some areas) | 1 |\n| **Regional warnings** | None available (the U.S. feed has no regional detail) | **Avoid non-essential travel** to: Beetham Estate Gardens, Cocorite (north of Western Main Road), parts of downtown Port of Spain, Laventille and Sea Lots, because of violence and gang crime | None |\n| **Risks named** | Crime, terrorism, health | Crime (petty and violent), terrorism, fraud, demonstrations, piracy | Terrorism, violent crime and assault, drug-assisted robbery and sexual assault, hurricanes, earthquakes, volcanic eruptions |\n| **Last updated** | 13 Apr 2026 | 24 Sep 2026 | 21 Sep 2026 |\n\n**Takeaways**\n- **Severity gap:** The spread is 2 points on the actor's 1–4 scale, which the actor flags as a material disagreement. Only the U.S. is at the highest level of the three.\n- **Crime:** All three name crime. Canada is the only one that lists specific neighborhoods to avoid. These are high-violence areas in and around Port of Spain.\n- **Terrorism:** All three mention it.\n- **Other risks:** The U.K. is the only one that covers natural hazards (hurricanes, earthquakes, volcanic eruptions). Canada also mentions piracy and demonstrations. The U.S. lists health as a risk.\n- **Freshness:** The U.S. advisory is about six months older than the U.K. and Canadian ones.\n\nThe 1–4 scale is the actor's own normalization, not an official rating. The official wording is in the table. The U.K. has no numbered levels, so its \"1\" only means there is no advice against travel.\n\nSources:\n- [U.S. State Dept](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tto.html)\n- [UK FCDO](https://www.gov.uk/foreign-travel-advice/trinidad-and-tobago)\n- [Government of Canada](https://travel.gc.ca/destinations/trinidad-and-tobago)\n\nCheck these pages before you travel, because advisories change.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "n/a",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "The answer reports the native wording faithfully, labels the 1–4 scale as normalized, and keeps Canada's regional warnings separate from its national advice. It also flags that U.S. regional data is unavailable and states the material disagreement; 'about six months older' is a slight rounding of roughly 5.3 months but is acceptable."
+          }
+        },
+        {
+          "id": "p25",
+          "category": "general_official_advisory",
+          "relevant": true,
+          "prompt": "Get current official government travel warnings for Kenya.",
+          "searchQueries": [
+            "travel advisory",
+            "government travel warnings"
+          ],
+          "discovered": true,
+          "rank": 1,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 18.51,
+          "invocations": [
+            {
+              "runId": "EdvWtc8fmJKnzh4vW",
+              "callError": null,
+              "input": {
+                "destination": "Kenya",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.843,
+              "toolLatencyS": 4.598,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "**Kenya travel warnings from the US, UK and Canadian governments** (retrieved 8 Oct 2026)\n\nAll three governments advise caution for the country as a whole. They also advise against travel to specific areas, mainly near the Somalia border and parts of the coast.\n\n| Source | Nationwide advice | Last updated |\n|---|---|---|\n| 🇺🇸 US State Department | **Level 2: Exercise Increased Caution** | 28 Jul 2026 |\n| 🇬🇧 UK FCDO | No advice against travel to the whole country, but **advises against all or all but essential travel to parts of it** | 7 Oct 2026 |\n| 🇨🇦 Government of Canada | **Exercise a high degree of caution** | 7 Oct 2026 |\n\n**Risks named in the advisories**\n- **US:** crime, kidnapping, terrorism, unrest, health and traffic safety.\n- **UK:** terrorism, terrorist kidnap, the political situation, crime (including vehicle crime and scams), sea travel, and extreme weather and earthquakes.\n- **Canada:** terrorism, crime (including violent crime and express kidnappings), kidnapping, demonstrations, fraud, piracy and the border areas.\n\n**Regional warnings**\n\nThe US source this tool uses has no regional detail.\n\n*UK FCDO*\n- **Advises against all travel to:**\n  - Mandera County.\n  - Tarbaj and Wajir East constituencies in Wajir County, except Wajir Town.\n  - Areas of Wajir County within 60 km of the Somali border.\n  - Most of Garissa County, except Garissa Town, Lagdera constituency and the parts of Balambala constituency north and west of the main road from Saka on the Tana River.\n  - Lamu County, except Lamu Island and Manda Island.\n- **Advises against all but essential travel to:**\n  - Garissa Town.\n  - Tana River County north of the river as far as Saka.\n  - The area within 15 km of the east coast between the Tana River and the Galana (Athi-Galana-Sabaki) River.\n\n*Government of Canada*\n- **Avoid all travel to:**\n  - Mandera, Wajir, Garissa and Lamu counties along the Somali border. This excludes Lamu Island and Manda Island, where Canada advises a high degree of caution.\n  - Turkana and Marsabit counties, within 110 km of the South Sudan and Ethiopia borders.\n  - The area within 50 km of the coast of Tana River County.\n  - The area within 50 km of the coast of Kilifi County, from north of Malindi to the Tana River County limits.\n- **Avoid non-essential travel to:** the Kibera neighbourhood of Nairobi, because of the high crime rate.\n\n**Sources**\n- US: https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ken.html\n- UK: https://www.gov.uk/foreign-travel-advice/kenya\n- Canada: https://travel.gc.ca/destinations/kenya\n\nThe tool's 1–4 severity score is its own scale, not an official one. Check the source pages before you travel, because advisories change often.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "Native wording is faithful for all three governments. The UK is described as having no whole-country advice and no numbered level, and Canada's categorical wording is used without a level number. The opening line saying all three 'advise caution' nationally is slightly loose for the UK, but the table states it accurately. Regional warnings are kept separate, the unavailable US regional data is not presented as 'no warnings', and the normalized scale is labelled as the tool's own."
+          }
+        },
+        {
+          "id": "p26",
+          "category": "cross_source_disagreement",
+          "relevant": true,
+          "prompt": "Do major government travel advisories disagree about Mexico?",
+          "searchQueries": [
+            "travel advisory",
+            "government travel advisories Mexico"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 5,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": null,
+          "elapsedS": 21.43,
+          "invocations": [
+            {
+              "runId": "gn0FhOgBHLYi7JpGv",
+              "callError": null,
+              "input": {
+                "destination": "Mexico",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.089,
+              "toolLatencyS": 6.737,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "**Mostly no on the national headline, but yes on the details.** I compared the U.S., UK and Canadian advisories using a comparison Actor. Its data was retrieved on 8 Oct 2026.\n\n| Government | Nationwide advice | Regional escalation |\n|---|---|---|\n| **US State Dept** | Level 2: Exercise Increased Caution (updated 29 May 2026) | Not available from the feed used |\n| **UK FCDO** | No advice against travel to the country as a whole. It advises against all but essential travel to parts of the country. | Yes |\n| **Canada** | Exercise a high degree of caution | Yes |\n\n**Where they agree**\n- None of the three advises against travel to Mexico as a whole.\n- All three cite crime and kidnapping. The US and UK also cite terrorism.\n- The Actor flagged no \"material disagreement\". Its normalized severity differs by only one step across the three.\n\n**Where they differ**\n- **Regional restrictions:** The UK and Canada both advise against non-essential travel to several states, including Chihuahua, Colima, Guerrero, Michoacán, Sinaloa, Tamaulipas and Zacatecas. They also list parts of Guanajuato, Jalisco and Chiapas.\n- **Extra areas, UK only:** It also lists Tijuana and Tecate in Baja California.\n- **Extra areas, Canada only:** It also lists Sonora, Nuevo León and part of Nayarit, which the UK does not.\n- **Exceptions:** Each government carves out different safe zones. For example, Canada excepts Mazatlán's tourist areas and Chihuahua City, while the UK has its own list of exceptions.\n- **Wording:** The UK has no national tier between normal precautions and advice against travel. That is why its national level looks lower than Canada's. A \"1\" for the UK mostly reflects that scale design, not a view that Mexico is safer.\n\n**Caveats**\n- The Actor couldn't get state-level US detail because it only reads the State Department's RSS feed. The US also issues state-by-state warnings for Mexico, so check the [US advisory page](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mex.html) directly. My table understates US regional caution.\n- The \"normalized severity\" scale is the Actor's own mapping. It isn't an official rating.\n\nOverall, the governments broadly agree on \"exercise caution, avoid certain states\". They differ in which areas they name and how they word the advice.",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "Native wording for the US, UK and Canada is accurate, normalized severity is clearly labelled as the Actor's own mapping, and the unavailable US regional data is not presented as 'no warnings'. The regional differences cited match the record and do not contradict materialDisagreement=false; the claim that the US issues state-by-state warnings is outside the record but is framed as a caveat."
+          }
+        },
+        {
+          "id": "p27",
+          "category": "single_source_wording",
+          "relevant": true,
+          "prompt": "What's the current travel warning situation for Colombia?",
+          "searchQueries": [
+            "travel advisory",
+            "Colombia travel warning"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 4,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 23.04,
+          "invocations": [
+            {
+              "runId": "gd2eOPBxpw39ml8TT",
+              "callError": null,
+              "input": {
+                "destination": "Colombia",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.725,
+              "toolLatencyS": 9.41,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Colombia has a mixed travel warning picture. The three governments I checked disagree on how risky it is nationwide, and all three warn against travel to certain border and rural regions. This is current as of the lookup on 2026-10-08.\n\n## Nationwide advice\n\n| Source | Advice | Last updated |\n|---|---|---|\n| **US State Dept** | **Level 3: Reconsider Travel**, citing crime, terrorism, civil unrest, kidnapping and natural disasters | 2026-03-31 |\n| **UK FCDO** | No advice against travel to the whole country, but advises against all but essential travel to specific regions | 2026-10-06 |\n| **Canada** | **Exercise a high degree of caution**, citing violent and petty crime, kidnapping (including express kidnappings), terrorism, fraud and demonstrations | 2026-10-06 |\n\n## Regional warnings\n\n**UK: avoid all but essential travel to:**\n- **Venezuela border and north:** all of Norte de Santander (including Cúcuta), all of Arauca, Puerto Carreño in Vichada, and within 5 km of the rest of the Venezuelan border.\n- **Pacific coast and Panama border:** most of Chocó (excluding Quibdó, Nuquí, Bahía Solano and Capurganá), western Valle del Cauca (including Buenaventura), Jamundí, parts of Nariño, southern Córdoba, the Urabá and Bajo Cauca regions of Antioquia, and southern Bolívar.\n- **Central Colombia:** Guaviare (except San José del Guaviare), parts of Caquetá, and the Ariari region of southern Meta (except Caño Cristales).\n- **Ecuador border and south:** within 5 km of the Ecuador border, all of Cauca (except Popayán), and parts of Putumayo.\n\n**Canada: avoid all travel to:**\n- Arauca, Caquetá (excluding Florencia), Cauca (excluding Popayán), parts of Cesar, and Chocó (excluding Bahía Solano, Capurganá and Nuquí).\n- Norte de Santander (excluding Cúcuta), and the port of Tumaco and the city of Buenaventura.\n- Within 50 km of the Venezuela border (excluding Cúcuta), within 100 km of the Panama border, and within 50 km of the Ecuador border (excluding the Ipiales crossing).\n\n**Canada: avoid non-essential travel to:**\n- Putumayo, Guainía, Guaviare, Vaupés and Vichada.\n- Most of Nariño, Meta and Valle del Cauca. Pasto, Villavicencio, Caño Cristales, Cali, Buga and Palmira are excluded from the warning.\n- Cúcuta, Florencia, Ipiales and Popayán.\n- Parts of Antioquia, Córdoba and Amazonas.\n\nCanada says to travel by air if you need to reach any of these excluded areas.\n\n**Canada: normal precautions** apply to Providencia and the town of San Andrés.\n\n## Takeaways\n- The main concerns are armed groups, kidnapping and violence in border and rural areas. Crime in cities and natural hazards also feature.\n- The UK also lists landmines as a risk.\n- The US advisory is the strictest nationwide and is also the oldest, last updated in March 2026. The US source I used gives no regional detail, so check the State Department page for its area-specific warnings.\n- Before you travel, check the official pages: [US](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.col.html), [UK](https://www.gov.uk/foreign-travel-advice/colombia) and [Canada](https://travel.gc.ca/destinations/colombia).",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "fail",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "unsupported_us_regional_claim"
+            ],
+            "notes": "The opening says all three governments warn against travel to certain border and rural regions, but the US regional data is null/unavailable in the record, so that is unsupported and contradicts the later caveat. Native wording, provenance, the disagreement statement and the UK/Canada regional details are otherwise reported faithfully; the UK Ecuador-border item drops the Rumichaca and Ipiales exceptions, a minor omission."
+          }
+        },
+        {
+          "id": "p28",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "Is Thailand considered risky by government travel agencies right now?",
+          "searchQueries": [
+            "travel advisory",
+            "Thailand travel advisory"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 4,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The comparator fits best.",
+          "elapsedS": 17.08,
+          "invocations": [
+            {
+              "runId": "fjDavBHkWTDjv3iDh",
+              "callError": null,
+              "input": {
+                "destination": "Thailand",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 2.6,
+              "toolLatencyS": 6.261,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Overall, Thailand is rated low-to-moderate risk. Three governments each list a few areas with much stronger warnings. I checked the US, UK and Canadian advisories on 8 Oct 2026.\n\n**Nationwide advice**\n| Government | Advice | Last updated |\n|---|---|---|\n| 🇺🇸 US State Dept | **Level 1: Exercise normal precautions** (the lowest level) | 7 Jul 2026 |\n| 🇬🇧 UK FCDO | No warning against travel to the country as a whole. It advises against all but essential travel to parts of the country. | 28 Sep 2026 |\n| 🇨🇦 Canada | **Exercise a high degree of caution** (the second-lowest of its four levels) | 24 Sep 2026 |\n\n**Areas with stronger warnings**\n- **Thai-Cambodian border:**\n  - The US says to exercise increased caution because of the risk of armed conflict.\n  - The UK advises against all but essential travel within 20 km of the border.\n  - Canada advises avoiding all travel within 50 km of the border because of ongoing tensions.\n- **Southern provinces (Yala, Pattani, Narathiwat, and parts of southern Songkhla):**\n  - The US says to exercise increased caution because of unrest.\n  - The UK advises against all but essential travel. This covers the same provinces and some Songkhla districts, plus the Hat Yai to Padang Besar train line.\n  - Canada advises avoiding all travel, citing separatist insurgent attacks. Its area includes Hat Yai city.\n- **Myanmar border areas:** Canada also flags the border areas of Mae Hong Son and Tak provinces.\n\n**General risks the governments mention**\n- Petty and violent crime.\n- Scams and fraud: bank card, ATM, job, rental and investment scams.\n- Terrorism and political demonstrations.\n- Sea travel hazards.\n- Extreme weather and earthquakes.\n\nTourist areas such as Bangkok, Phuket, Chiang Mai and the islands aren't under any regional warning in these advisories. Check the official pages before you book, because the border situation in particular can change quickly:\n- US: travel.state.gov\n- UK: gov.uk/foreign-travel-advice/thailand\n- Canada: travel.gc.ca/destinations/thailand",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "pass",
+              "R8": "pass"
+            },
+            "correct": true,
+            "errors": [],
+            "notes": "Native wording is reported faithfully (US Level 1, UK FCDO without a numbered level, Canada's named category), and regional warnings are kept separate from national advice. Minor extrapolations are not record-contradicting: 'petty' crime and the claim that tourist areas are not under regional warnings, given the US note that its regional coverage is limited to the RSS summary."
+          }
+        },
+        {
+          "id": "p29",
+          "category": "ambiguous_natural_language",
+          "relevant": true,
+          "prompt": "Is it safe to travel to Jamaica right now?",
+          "searchQueries": [
+            "travel advisory",
+            "web browser search"
+          ],
+          "discovered": true,
+          "rank": 3,
+          "competitorsReturned": 7,
+          "competitorsAhead": [
+            "jungle_synthesizer/us-state-dept-travel-advisories-scraper",
+            "maximedupre/us-travel-advisories-scraper"
+          ],
+          "detailsFetched": [],
+          "selected": "rhincodontypus/official-travel-advisory-comparator",
+          "oursSelected": true,
+          "selectionRationale": "The Official Travel Advisory Comparator fits best, since it covers US, UK and Canadian advisories for one destination.",
+          "elapsedS": 18.24,
+          "invocations": [
+            {
+              "runId": "td4I7Ykl3vCkqhy9Y",
+              "callError": null,
+              "input": {
+                "destination": "Jamaica",
+                "includeRegional": true
+              },
+              "inventedFields": [],
+              "destinationCorrect": true,
+              "sourcesSupplied": null,
+              "sourcesExpected": null,
+              "accepted": true,
+              "runStatus": "SUCCEEDED",
+              "datasetStatus": "success",
+              "runTimeSecs": 3.462,
+              "toolLatencyS": 7.19,
+              "chargedEventCounts": {
+                "apify-actor-start": 1,
+                "destination-lookup": 1
+              },
+              "accountedChargedEventCounts": {
+                "apify-actor-start": 0,
+                "destination-lookup": 0
+              },
+              "billable": true,
+              "valid": true
+            }
+          ],
+          "finalAnswer": "Jamaica is generally open to travel, but the US and Canadian governments both advise extra caution, mainly because of crime. I checked the official advisories on 8 Oct 2026.\n\n| Source | Advisory | Last updated |\n|---|---|---|\n| 🇺🇸 US State Department | Level 2 of 4: Exercise Increased Caution (crime, health risks) | 23 Jun 2026 |\n| 🇨🇦 Government of Canada | Exercise a high degree of caution (violent and petty crime, fraud, demonstrations) | 7 Oct 2026 |\n| 🇬🇧 UK FCDO | No advice against travel to any part of the country | 6 May 2026 |\n\n- **Overall:** None of the three governments advises against travel, and none lists a regional warning, such as an area to avoid. They broadly agree, with only a one-step difference between them.\n- **Crime:** This is the main concern. Violent crime, petty theft and scams (card/ATM fraud, romance and lottery scams) are all mentioned.\n- **Natural hazards:** The UK page flags hurricanes and earthquakes. Hurricane season runs June to November, so it's still active.\n- **Other risks:** The UK page also mentions terrorism and crowds or demonstrations as general risks. Canada flags demonstrations too.\n\n**Practical tips:**\n- Stay in well-regarded resort areas or neighborhoods, and arrange transport through your hotel or a licensed operator.\n- Avoid walking alone at night or in unfamiliar areas.\n- Don't display valuables, and use ATMs inside secure locations.\n- Buy travel insurance that covers weather disruption and medical care.\n- Check the weather forecast for your dates, and enroll in your country's traveler alert program.\n\nThis tool only reads the official advisories. It doesn't cover breaking events like a storm or unrest that began in the last few days. Check the live pages before you book or leave: [US](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.jam.html), [UK](https://www.gov.uk/foreign-travel-advice/jamaica) and [Canada](https://travel.gc.ca/destinations/jamaica).",
+          "interpretation": {
+            "criteria": {
+              "R1": "pass",
+              "R2": "pass",
+              "R3": "pass",
+              "R4": "pass",
+              "R5": "pass",
+              "R6": "pass",
+              "R7": "fail",
+              "R8": "pass"
+            },
+            "correct": false,
+            "errors": [
+              "us_regional_unknown_presented_as_none"
+            ],
+            "notes": "The answer says none of the three governments lists a regional warning, but the US record has regionalCoverage 'unavailable' and regionalWarnings null, so US regional status is unknown rather than empty. Native wording, provenance and the absence of material disagreement are otherwise reported faithfully."
+          }
+        },
+        {
+          "id": "p30",
+          "category": "flights",
+          "relevant": false,
+          "prompt": "Find me the cheapest flight to Mexico City.",
+          "searchQueries": [
+            "flights",
+            "Google Flights"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 13,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 5.45,
+          "invocations": []
+        },
+        {
+          "id": "p31",
+          "category": "weather",
+          "relevant": false,
+          "prompt": "What's the weather in Thailand next week?",
+          "searchQueries": [
+            "weather forecast",
+            "weather"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 7,
+          "competitorsAhead": [],
+          "detailsFetched": [
+            "filip_cicvarek/weather-data-scraper"
+          ],
+          "selected": "filip_cicvarek/weather-data-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 4.51,
+          "invocations": []
+        },
+        {
+          "id": "p32",
+          "category": "visas",
+          "relevant": false,
+          "prompt": "Do I need a visa to visit France?",
+          "searchQueries": [
+            "visa requirements",
+            "France visa"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 10,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 8.65,
+          "invocations": []
+        },
+        {
+          "id": "p33",
+          "category": "hotels",
+          "relevant": false,
+          "prompt": "Find a hotel in Nairobi.",
+          "searchQueries": [
+            "hotels",
+            "Booking.com hotels"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 8,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "santamaria-automations/booking-com-scraper",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 3.78,
+          "invocations": []
+        },
+        {
+          "id": "p34",
+          "category": "itinerary",
+          "relevant": false,
+          "prompt": "Build me a five-day itinerary for Colombia.",
+          "searchQueries": [
+            "Colombia travel",
+            "itinerary planner"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 9,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 12.04,
+          "invocations": []
+        },
+        {
+          "id": "p35",
+          "category": "restaurants",
+          "relevant": false,
+          "prompt": "Recommend good restaurants near the old town in Cartagena, Colombia.",
+          "searchQueries": [
+            "Google Maps restaurants",
+            "Tripadvisor restaurants"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 8,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "burbn/tripadvisor-restaurants",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 3.85,
+          "invocations": []
+        },
+        {
+          "id": "p36",
+          "category": "passports",
+          "relevant": false,
+          "prompt": "How do I renew my U.S. passport before a trip to Japan?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 11.46,
+          "invocations": []
+        },
+        {
+          "id": "p37",
+          "category": "currency_conversion",
+          "relevant": false,
+          "prompt": "Convert 500 US dollars to Trinidad and Tobago dollars.",
+          "searchQueries": [
+            "currency exchange rate",
+            "currency converter"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 8,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "ryanclinton/exchange-rate-tracker",
+          "oursSelected": false,
+          "selectionRationale": "Free one with amount: ryanclinton/exchange-rate-tracker.",
+          "elapsedS": 3.58,
+          "invocations": []
+        },
+        {
+          "id": "p38",
+          "category": "attractions",
+          "relevant": false,
+          "prompt": "What are the top tourist attractions to see in Kenya?",
+          "searchQueries": [
+            "Kenya tourist attractions",
+            "Google Maps"
+          ],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 5,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": "compass/crawler-google-places",
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 5.37,
+          "invocations": []
+        },
+        {
+          "id": "p39",
+          "category": "local_transportation",
+          "relevant": false,
+          "prompt": "What's the best way to get from Bangkok airport to the city centre?",
+          "searchQueries": [],
+          "discovered": false,
+          "rank": null,
+          "competitorsReturned": 0,
+          "competitorsAhead": [],
+          "detailsFetched": [],
+          "selected": null,
+          "oursSelected": false,
+          "selectionRationale": null,
+          "elapsedS": 8.59,
+          "invocations": []
+        }
+      ]
+    }
+  }
+}

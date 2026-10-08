@@ -46,7 +46,7 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
 
 ```json
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "status": "success",
   "query": {
     "input": "Trinidad and Tobago",
@@ -208,6 +208,21 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
     "severitySpread": 2,
     "materialDisagreement": true,
     "highestRegionalSeverity": 3,
+    "regionalCoverage": {
+      "status": "partial",
+      "sourcesAvailable": [
+        "UK",
+        "CA"
+      ],
+      "sourcesUnavailable": [
+        "US"
+      ],
+      "allRequestedSourcesKnown": false
+    },
+    "regionalWarningConclusion": "warnings_reported",
+    "sourcesWithRegionalWarnings": [
+      "CA"
+    ],
     "sourcesAtHighestOverallSeverity": [
       "US"
     ]
@@ -235,7 +250,7 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
 | `advisories[].regionalWarnings[]` | Region, native advice, normalized severity and verbatim details. `[]` = checked, no regional warnings. `null` = unknown (`regionalCoverage: "unavailable"`) or omitted (`includeRegional: false`) |
 | `advisories[].riskCategories` | Controlled vocabulary: `crime`, `terrorism`, `kidnapping`, `civil_unrest`, `armed_conflict`, `arbitrary_detention`, `health`, `natural_disaster`, `border_security`, `maritime`, `landmines`, `wrongful_detention`, `other` |
 | `advisories[].sourceUrl` / `sourceUpdatedAt` | Official page and the source's own last-updated date |
-| `comparison` | `availableSeverityValues`, lowest/highest, `severitySpread` (max − min), `materialDisagreement` (spread ≥ 2), `highestRegionalSeverity`, `sourcesAtHighestOverallSeverity` |
+| `comparison` | `availableSeverityValues`, lowest/highest, `severitySpread` (max − min), `materialDisagreement` (spread ≥ 2), `highestRegionalSeverity` (highest regional severity actually observed; `null` alone does **not** mean no regional warnings exist), `regionalCoverage` (`complete` / `partial` / `unavailable`, with `sourcesAvailable` and `sourcesUnavailable`), `regionalWarningConclusion`, `sourcesWithRegionalWarnings`, `sourcesAtHighestOverallSeverity`. `regionalWarningConclusion` is `warnings_reported` (at least one source reports a regional warning), `none_reported` (regional coverage is complete and no source reports one) or `unknown_due_to_incomplete_coverage` (none observed, but at least one source's regional status is unknown, so absence cannot be concluded) |
 | `errors[]` | Per-source failures: `DESTINATION_NOT_FOUND`, `UPSTREAM_UNAVAILABLE`, `UPSTREAM_TIMEOUT`, `PARSER_FAILED`, `UNEXPECTED_SOURCE_FORMAT`, plus `INVALID_DESTINATION` |
 | `billing` | Whether this lookup was charged, and why |
 

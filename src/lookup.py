@@ -182,7 +182,7 @@ async def run_lookup(
             if run.error is not None
         ],
         advisories=advisories,
-        comparison=compare(advisories),
+        comparison=compare(advisories, requested),
         billing=billing_decision(status, len(advisories)),
     )
     return LookupOutcome(result, {run.code: run for run in runs}, round((time.perf_counter() - started) * 1000, 1))

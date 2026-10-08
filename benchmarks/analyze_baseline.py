@@ -272,6 +272,7 @@ def score_arm(episodes: list[dict], prompts: dict, judge_model: str | None, arm_
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--judge-model")
+    ap.add_argument("--build", default="1.0.2", help="Actor build whose raw-{arm}-{build}.jsonl episodes to score")
     ap.add_argument("--out", default=str(HERE / "results" / "baseline-1.0.2.json"))
     ap.add_argument("--reuse-judgments", action="store_true", help="reuse interpretation grades from --out")
     a = ap.parse_args()
@@ -282,9 +283,9 @@ def main() -> None:
                 if "interpretation" in row:
                     reuse[(arm_name, row["id"])] = row["interpretation"]
     prompts = {p["id"]: p for p in json.loads((HERE / "agent_selection_prompts.json").read_text())["prompts"]}
-    result = {"actor": OURS, "actorBuild": "1.0.2", "judgeModel": a.judge_model, "arms": {}}
+    result = {"actor": OURS, "actorBuild": a.build, "judgeModel": a.judge_model, "arms": {}}
     for arm in ("default", "directed"):
-        f = HERE / "results" / f"raw-{arm}-1.0.2.jsonl"
+        f = HERE / "results" / f"raw-{arm}-{a.build}.jsonl"
         eps = [json.loads(line) for line in f.read_text().splitlines()]
         result["arms"][arm] = {
             "model": eps[0]["model"],

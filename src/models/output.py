@@ -8,13 +8,15 @@ from pydantic.alias_generators import to_camel
 from ..utils.errors import ErrorCode
 from .input import SourceCode
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"
 
 Severity = Annotated[int, Field(ge=1, le=4)]
 LookupStatus = Literal["success", "partial", "insufficient_sources", "invalid_destination"]
 MatchMethod = Literal["name", "alias", "iso_code", "fuzzy"]
 RegionalCoverage = Literal["available", "unavailable", "not_applicable"]
 NativeScaleType = Literal["numbered", "categorical"]
+RegionalCoverageStatus = Literal["complete", "partial", "unavailable"]
+RegionalWarningConclusion = Literal["warnings_reported", "none_reported", "unknown_due_to_incomplete_coverage"]
 
 _SEVERITY_SCALE = (
     "1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel"
@@ -131,13 +133,56 @@ class QueryInfo(_Model):
     candidates: list[str] = Field(default_factory=list, description="Possible matches when the input is ambiguous.")
 
 
+class ComparisonRegionalCoverage(_Model):
+    status: RegionalCoverageStatus = Field(
+        description=(
+            "complete: every successfully retrieved source has known regional coverage; partial: at least one "
+            "known and at least one unavailable; unavailable: no successfully retrieved source has known regional "
+            "coverage. Sources that failed entirely are reported in sourcesFailed/errors, not here."
+        )
+    )
+    sources_available: list[SourceCode] = Field(
+        description=(
+            "Successfully retrieved sources whose regional status is known (regionalCoverage is not 'unavailable')."
+        )
+    )
+    sources_unavailable: list[SourceCode] = Field(
+        description="Successfully retrieved sources whose regional status is unknown (regionalCoverage 'unavailable')."
+    )
+    all_requested_sources_known: bool = Field(
+        description="True only if every requested source was retrieved and has known regional coverage."
+    )
+
+
 class Comparison(_Model):
     available_severity_values: list[int] = Field(description="Normalized overall severities, in source order.")
     lowest_overall_severity: Severity | None
     highest_overall_severity: Severity | None
     severity_spread: int | None = Field(description="max - min overall severity; null with fewer than two values.")
     material_disagreement: bool | None = Field(description="True when severitySpread >= 2; null if not computable.")
-    highest_regional_severity: Severity | None = Field(description="Highest regionalMax across sources.")
+    highest_regional_severity: Severity | None = Field(
+        description=(
+            "Highest normalized severity among regional warnings actually observed in sources with available "
+            "regional data. Null does not by itself mean that no regional warnings exist; consult "
+            "regionalWarningConclusion and regionalCoverage."
+        )
+    )
+    regional_coverage: ComparisonRegionalCoverage = Field(
+        description="Which successfully retrieved sources have known vs unknown regional-warning status."
+    )
+    regional_warning_conclusion: RegionalWarningConclusion = Field(
+        description=(
+            "Deterministic cross-source conclusion about regional warnings. warnings_reported: at least one "
+            "source with available regional coverage reports a regional warning. none_reported is used only when "
+            "regional coverage is complete for all successfully retrieved requested sources and none reports a "
+            "regional warning. unknown_due_to_incomplete_coverage means no regional warning was observed but at "
+            "least one source's regional coverage is unavailable, so the Actor cannot conclude that no regional "
+            "warnings exist."
+        )
+    )
+    sources_with_regional_warnings: list[SourceCode] = Field(
+        description="Sources with available regional coverage that report at least one regional warning."
+    )
     sources_at_highest_overall_severity: list[SourceCode]
 
 

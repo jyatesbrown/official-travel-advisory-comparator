@@ -3,7 +3,7 @@
     "fields": {
         "properties": {
             "schemaVersion": {
-                "default": "1.1",
+                "default": "1.2",
                 "description": "Record schema version.",
                 "type": "string"
             },
@@ -493,7 +493,76 @@
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Highest regionalMax across sources."
+                                "description": "Highest normalized severity among regional warnings actually observed in sources with available regional data. Null does not by itself mean that no regional warnings exist; consult regionalWarningConclusion and regionalCoverage."
+                            },
+                            "regionalCoverage": {
+                                "properties": {
+                                    "status": {
+                                        "description": "complete: every successfully retrieved source has known regional coverage; partial: at least one known and at least one unavailable; unavailable: no successfully retrieved source has known regional coverage. Sources that failed entirely are reported in sourcesFailed/errors, not here.",
+                                        "enum": [
+                                            "complete",
+                                            "partial",
+                                            "unavailable"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "sourcesAvailable": {
+                                        "description": "Successfully retrieved sources whose regional status is known (regionalCoverage is not 'unavailable').",
+                                        "items": {
+                                            "enum": [
+                                                "US",
+                                                "UK",
+                                                "CA"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "sourcesUnavailable": {
+                                        "description": "Successfully retrieved sources whose regional status is unknown (regionalCoverage 'unavailable').",
+                                        "items": {
+                                            "enum": [
+                                                "US",
+                                                "UK",
+                                                "CA"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "allRequestedSourcesKnown": {
+                                        "description": "True only if every requested source was retrieved and has known regional coverage.",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "status",
+                                    "sourcesAvailable",
+                                    "sourcesUnavailable",
+                                    "allRequestedSourcesKnown"
+                                ],
+                                "type": "object"
+                            },
+                            "regionalWarningConclusion": {
+                                "description": "Deterministic cross-source conclusion about regional warnings. warnings_reported: at least one source with available regional coverage reports a regional warning. none_reported is used only when regional coverage is complete for all successfully retrieved requested sources and none reports a regional warning. unknown_due_to_incomplete_coverage means no regional warning was observed but at least one source's regional coverage is unavailable, so the Actor cannot conclude that no regional warnings exist.",
+                                "enum": [
+                                    "warnings_reported",
+                                    "none_reported",
+                                    "unknown_due_to_incomplete_coverage"
+                                ],
+                                "type": "string"
+                            },
+                            "sourcesWithRegionalWarnings": {
+                                "description": "Sources with available regional coverage that report at least one regional warning.",
+                                "items": {
+                                    "enum": [
+                                        "US",
+                                        "UK",
+                                        "CA"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
                             },
                             "sourcesAtHighestOverallSeverity": {
                                 "items": {
@@ -514,6 +583,9 @@
                             "severitySpread",
                             "materialDisagreement",
                             "highestRegionalSeverity",
+                            "regionalCoverage",
+                            "regionalWarningConclusion",
+                            "sourcesWithRegionalWarnings",
                             "sourcesAtHighestOverallSeverity"
                         ],
                         "type": "object"
@@ -584,6 +656,7 @@
                     "comparison.severitySpread",
                     "comparison.materialDisagreement",
                     "comparison.highestRegionalSeverity",
+                    "comparison.regionalWarningConclusion",
                     "sourcesSucceeded",
                     "sourcesFailed",
                     "billing.billable",
@@ -616,6 +689,10 @@
                     "comparison.highestRegionalSeverity": {
                         "label": "Highest regional",
                         "format": "number"
+                    },
+                    "comparison.regionalWarningConclusion": {
+                        "label": "Regional conclusion",
+                        "format": "text"
                     },
                     "sourcesSucceeded": {
                         "label": "Sources OK",
