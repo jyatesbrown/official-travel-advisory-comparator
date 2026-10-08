@@ -6,7 +6,7 @@ and the **Government of Canada**, side by side, as **one structured JSON record*
 
 Each government uses its own wording and scale ("Level 3: Reconsider Travel", "advises against all
 but essential travel to parts", "Exercise a high degree of caution"). This Actor keeps that native
-wording and adds a **normalized 1–4 severity**, **regional (sub-national) warnings**, **risk
+wording and adds a **normalized 1–4 severity**, **available regional (sub-national) warnings**, **risk
 categories**, source dates and **official source URLs**. That way you can **compare travel advisories**
 and check for disagreement between governments without scraping three websites.
 
