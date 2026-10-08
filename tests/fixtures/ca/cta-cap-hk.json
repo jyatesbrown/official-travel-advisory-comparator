@@ -1,0 +1,31 @@
+{
+ "metadata": {
+  "generated": {
+   "timestamp": 1790255671,
+   "date": "2026-09-24 09:14:31"
+  }
+ },
+ "data": {
+  "country-iso": "HK",
+  "advisory-state": 1,
+  "has-advisory-warning": 0,
+  "has-regional-advisory": 0,
+  "has-content": 1,
+  "update-metadata": "Editorial change",
+  "eng": {
+   "name": "Hong Kong",
+   "url-slug": "hong-kong",
+   "geo-group": "Asia",
+   "flag": null,
+   "friendly-date": "September 24, 2026 08:53 EDT",
+   "advisory-text": "Exercise a high degree of caution",
+   "recent-updates": "Health – editorial change",
+   "advisories": "<div class=\"AdvisoryContainer ExHigh\"><h3>Hong Kong - Exercise a high degree of caution</h3><p><a class=\"wb-lbx\" title=\"Risk Levels\" href=\"#levels\">Exercise a high degree of caution</a> in Hong Kong due to the risk of arbitrary enforcement of local laws.</p></div>",
+   "security": "<h3>Crime</h3><h4>Petty crime</h4><p>Petty crime such as pickpocketing and purse snatching occurs, particularly:</p><ul><li>at the airport</li><li>on public transportation</li><li>in main shopping areas and markets</li><li>in hotel lobbies</li><li>on crowded streets</li><li>at tourist attractions</li></ul><h4>Violent crime</h4><p>Serious crime against foreigners is relatively rare, but incidents may occur.</p><p>While in Hong Kong:</p><ul><li>be vigilant in crowded locations</li><li>don't carry large sums of money</li><li>ensure that your belongings, including your passport and other travel documents, are secure at all times</li></ul><h3>Spiked food and drinks</h3><p>Foreigners have been targeted in incidents of drink spiking, particularly in the Wan Chai area. Items containing drugs could put you at risk of sexual assault, robbery or credit card fraud.</p><ul><li>Be cautious of unsolicited requests from strangers</li><li>Never leave food or drinks unattended or in the care of strangers</li><li>Be wary of accepting snacks, beverages, gum or cigarettes from new acquaintances</li></ul><h3>Fraud</h3><p>Credit card and ATM fraud occurs. When using debit or credit cards:</p><ul><li>pay careful attention when others are handling your cards</li><li>use ATMs located inside a bank or business</li><li>avoid using card readers with an irregular or unusual feature</li><li>cover the keypad with one hand when entering your PIN</li><li>check for any unauthorized transactions on your account statements</li></ul><p><a title=\"\" href=\"https://travel.gc.ca/travelling/health-safety/overseas-fraud\">Overseas fraud</a></p><h3>Demonstrations</h3><p>Demonstrations are illegal without prior approval from the local government. However, unauthorized and spontaneous demonstrations could still occur.</p><p>Even peaceful demonstrations can turn violent at any time. They can also lead to disruptions to traffic and public transportation.</p><p>If you participate in or are witness to a demonstration, you may be subject to scrutiny and severe legal action.</p><ul><li>Avoid areas where demonstrations and large gatherings are taking place</li><li>Don't film or take pictures of demonstrations</li><li>Follow the instructions of local authorities</li><li>Monitor local media for information on ongoing demonstrations</li></ul><p><a title=\"\" href=\"https://travel.gc.ca/travelling/health-safety/mass-gatherings\">Mass gatherings (large-scale events)</a></p><h3>Cybersecurity</h3><p>You shouldn't expect internet privacy. Your communications may be monitored at any time, and authorities may review the content stored or consulted on your electronic devices.</p><p>Authorities will be on the lookout for material appearing to be seditious or that is critical of mainland China and local authorities.</p><p><a title=\"\" href=\"https://travel.gc.ca/travelling/health-safety/cyber-safe\">Cyber security while travelling</a></p><h3>Journalism and research</h3><p>Journalists and other media workers in Hong Kong are now facing certain restrictions in the context of their work.</p><p>You should be particularly vigilant if researching or reporting on subjects critical of or sensitive to the government. You may face censorship.</p><h3>Road safety</h3><p>Traffic is congested in urban areas. Roads are narrow and frequently unmarked.</p><h3>Public transportation</h3><p>Public transportation in Hong Kong is safe and reliable.</p><p><a title=\"\" href=\"https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/index.html\">Public transportation in Hong Kong</a> &ndash; Transport Department of Hong Kong</p><h4>Taxis</h4><p>Taxis and ride-sharing services are widely available.</p><p>Most drivers don't speak English or French. Before you travel, have the name and address of your destination written in Chinese characters.</p><ul><li>Use only officially marked taxis or a trusted ride-sharing app</li><li>Negotiate fares in advance, or insist that the driver use the meter, as you may be overcharged</li></ul><h3>Air travel</h3><p>We don't make assessments on the compliance of foreign domestic airlines with international safety standards.</p><p><a href=\"https://travel.gc.ca/air/in-flight-safety#other\">Information about foreign domestic airlines</a></p>",
+   "offices-help-abroad": {
+    "opening-text": "",
+    "closing-text": ""
+   }
+  }
+ }
+}
