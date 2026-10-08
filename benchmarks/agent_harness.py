@@ -25,17 +25,28 @@ MCP_URL = "https://mcp.apify.com/"
 OURS = "rhincodontypus/official-travel-advisory-comparator"
 OURS_ID = "NlGhYH3A5vpWZe3Th"
 EXCLUDED_TOOLS = {"report-problem", "abort-actor-run"}
+# Arm "default": every tool the hosted server offers by default (incl. web-fetch / RAG browser).
+# Arm "store": the generic web-retrieval tools are withheld, so data can only come via Store Actors.
+WEB_TOOLS = {"apify--web-fetch", "apify--rag-web-browser"}
 ACTOR_RUNNING_TOOLS = {"call-actor"}
 MAX_TURNS = 14
 SYSTEM_PROMPT = (
     "You are a helpful assistant. Answer the user's request. You have access to tools; "
     "use them when they help you answer accurately, and answer directly when they do not."
 )
+# Arm "directed": web tools withheld and the agent is told to work through Store Actors, so that
+# Store discovery and selection can be measured. It never names or hints at any particular Actor.
+DIRECTED_PROMPT = (
+    "You are a helpful assistant that completes requests using Apify Store Actors. Before running "
+    "any Actor, use search-actors to find candidate Actors for the request, choose the one that best "
+    "fits, then run it and answer the user from its results. If no Actor fits the request, say so and "
+    "answer directly without running one."
+)
 HERE = Path(__file__).parent
 
 
 class MCP:
-    def __init__(self, token: str) -> None:
+    def __init__(self, token: str, arm: str = "default") -> None:
         self.client = httpx.Client(timeout=120)
         self.headers = {
             "Authorization": f"Bearer {token}",
@@ -60,7 +71,11 @@ class MCP:
         self.headers["Mcp-Session-Id"] = r.headers["mcp-session-id"]
         self.headers["Mcp-Protocol-Version"] = "2025-06-18"
         self.client.post(MCP_URL, headers=self.headers, json={"jsonrpc": "2.0", "method": "notifications/initialized"})
-        self.tools = [t for t in self.rpc("tools/list", {})["tools"] if t["name"] not in EXCLUDED_TOOLS]
+        self.tools = [
+            t
+            for t in self.rpc("tools/list", {})["tools"]
+            if t["name"] not in EXCLUDED_TOOLS and not (arm in ("store", "directed") and t["name"] in WEB_TOOLS)
+        ]
 
     def _req(self, method: str, params: dict) -> dict:
         self._id += 1
@@ -105,8 +120,9 @@ def result_text(result: dict) -> str:
 
 
 class Anthropic:
-    def __init__(self, model: str, tools: list[dict]) -> None:
+    def __init__(self, model: str, tools: list[dict], system: str = SYSTEM_PROMPT) -> None:
         self.model = model
+        self.system = system
         self.client = httpx.Client(timeout=180)
         self.tools = [
             {"name": t["name"], "description": t.get("description", ""), "input_schema": t["inputSchema"]}
@@ -127,13 +143,13 @@ class Anthropic:
             json={
                 "model": self.model,
                 "max_tokens": 4096,
-                "system": SYSTEM_PROMPT,
+                "system": self.system,
                 "tools": self.tools,
                 "messages": messages,
-                "temperature": 0,
             },
         )
-        r.raise_for_status()
+        if r.is_error:
+            raise RuntimeError(f"LLM API {r.status_code}: {r.text[:800]}")
         d = r.json()
         messages.append({"role": "assistant", "content": d["content"]})
         text = "\n".join(b["text"] for b in d["content"] if b["type"] == "text")
@@ -152,8 +168,9 @@ class Anthropic:
 
 
 class OpenAI:
-    def __init__(self, model: str, tools: list[dict]) -> None:
+    def __init__(self, model: str, tools: list[dict], system: str = SYSTEM_PROMPT) -> None:
         self.model = model
+        self.system = system
         self.client = httpx.Client(timeout=180)
         self.tools = [
             {
@@ -168,7 +185,7 @@ class OpenAI:
         ]
 
     def start(self, prompt: str) -> list:
-        return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}]
+        return [{"role": "system", "content": self.system}, {"role": "user", "content": prompt}]
 
     def step(self, messages: list) -> tuple[str, list[dict], dict]:
         r = self.client.post(
@@ -176,7 +193,8 @@ class OpenAI:
             headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
             json={"model": self.model, "messages": messages, "tools": self.tools},
         )
-        r.raise_for_status()
+        if r.is_error:
+            raise RuntimeError(f"LLM API {r.status_code}: {r.text[:800]}")
         d = r.json()
         m = d["choices"][0]["message"]
         messages.append({k: v for k, v in m.items() if k in ("role", "content", "tool_calls")})
@@ -278,6 +296,7 @@ def main() -> None:
     ap.add_argument("--provider", choices=["anthropic", "openai"], required=True)
     ap.add_argument("--model", required=True)
     ap.add_argument("--ids", nargs="*")
+    ap.add_argument("--arm", choices=["default", "store", "directed"], default="default")
     ap.add_argument("--out", default=str(HERE / "results" / "raw-episodes.jsonl"))
     a = ap.parse_args()
     prompts = json.loads((HERE / "agent_selection_prompts.json").read_text())["prompts"]
@@ -288,8 +307,17 @@ def main() -> None:
     for p in prompts:
         if p["id"] in done:
             continue
-        mcp = MCP(os.environ["APIFY_TOKEN"])
-        llm = (Anthropic if a.provider == "anthropic" else OpenAI)(a.model, mcp.tools)
+        for attempt in range(4):
+            try:
+                mcp = MCP(os.environ["APIFY_TOKEN"], a.arm)
+                break
+            except (ValueError, KeyError, httpx.HTTPError):
+                if attempt == 3:
+                    raise
+                time.sleep(5 * (attempt + 1))
+        llm = (Anthropic if a.provider == "anthropic" else OpenAI)(
+            a.model, mcp.tools, DIRECTED_PROMPT if a.arm == "directed" else SYSTEM_PROMPT
+        )
         ep = run_episode(mcp, llm, p)
         ep.update(
             {
