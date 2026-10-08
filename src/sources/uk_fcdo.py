@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup, Tag
 
 from ..destinations.resolver import Destination
 from ..models.input import SourceCode
-from ..models.output import RegionalWarning, SourceAdvisory
+from ..models.output import NativeScale, RegionalWarning, SourceAdvisory
 from ..normalization.risks import map_labels
 from ..normalization.severity import (
     UK_PARTS_STATUSES,
@@ -133,6 +133,19 @@ def extract_risk_labels(safety_html: str) -> list[str]:
     return [t for h in soup.find_all(["h2", "h3"]) if (t := element_text(h))]
 
 
+NATIVE_SCALE = NativeScale(
+    type="categorical",
+    description=(
+        "UK FCDO uses advisory wording such as 'against all travel' or 'against all but essential travel' "
+        "(to the whole country or to parts of it) rather than a numbered national scale; "
+        "nativeLevel lists the GOV.UK alert_status codes."
+    ),
+)
+REGIONAL_UNAVAILABLE_NOTE = (
+    "GOV.UK alert_status indicates FCDO warnings for parts of this country, but their details could not be read."
+)
+
+
 def build_advisory(doc: Any, *, slug: str, destination: Destination, include_regional: bool) -> SourceAdvisory:
     if (
         not isinstance(doc, dict)
@@ -175,16 +188,18 @@ def build_advisory(doc: Any, *, slug: str, destination: Destination, include_reg
     regional: list[RegionalWarning] = []
     if warnings_html:
         regional = extract_regional(warnings_html, own_slug=slug, country_name=country_name)
+    coverage = "available"
     if parts_severities and not regional:
         log.warning("GOV.UK %s: alert_status lists regional warnings but none were parsed", slug)
+        coverage = "unavailable"
 
     categories, native_labels = map_labels(
         extract_risk_labels(parts.get("safety-and-security", "")), unmatched_as_other=False
     )
     severity = summarize(
         overall,
-        [*parts_severities, *(w.normalized_severity for w in regional)],
-        regional_indicated=bool(parts_severities),
+        [*parts_severities, *(w.normalized_severity for w in regional)] if coverage == "available" else [],
+        regional_indicated=bool(parts_severities) if coverage == "available" else None,
         basis=basis,
     )
     return SourceAdvisory(
@@ -196,11 +211,14 @@ def build_advisory(doc: Any, *, slug: str, destination: Destination, include_reg
         source_updated_at=normalize_iso(doc.get("public_updated_at")),
         native_level=", ".join(statuses) if statuses else "none",
         native_advice=native_advice,
+        native_scale=NATIVE_SCALE,
         normalized_severity=severity,
         risk_categories=categories,
         native_risk_labels=native_labels,
         risk_categories_basis="Section headings of the GOV.UK 'Safety and security' page that match the vocabulary.",
-        regional_warnings=regional_output(include_regional, regional),
+        **regional_output(
+            include_regional, coverage, regional, REGIONAL_UNAVAILABLE_NOTE if coverage != "available" else None
+        ),
     )
 
 

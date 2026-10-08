@@ -29,7 +29,7 @@ governments' own published data feeds, and the same input always produces the sa
 | Field | Type | Required | Default | Description |
 |---|---|---|---|---|
 | `destination` | string | yes | | One country or territory. Common names, alternate spellings and ISO codes work: `"Trinidad and Tobago"`, `"trinidad & tobago"`, `"Turkey"` → Türkiye, `"Ivory Coast"` / `"Côte d'Ivoire"`, `"TT"`, `"MEX"`. |
-| `sources` | array | no | `["US","UK","CA"]` | Any two or three of `US`, `UK`, `CA`. |
+| `sources` | array | no | `["US","UK","CA"]` | Any two or three of `US`, `UK`, `CA`. Case-insensitive aliases are normalized to these codes: `us`/`usa`/`united states`/`state department`, `uk`/`fcdo`/`united kingdom`/`gov.uk`, `ca`/`can`/`canada`/`travel.gc.ca`. |
 | `includeRegional` | boolean | no | `true` | Include the list of regional warnings. Regional *maximum* severity is always returned. |
 
 ```json
@@ -46,7 +46,7 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
 
 ```json
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "status": "success",
   "query": {
     "input": "Trinidad and Tobago",
@@ -79,11 +79,16 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
       "sourceUpdatedAt": "2026-04-13",
       "nativeLevel": "Level 3",
       "nativeAdvice": "Reconsider Travel",
+      "nativeScale": {
+        "type": "numbered",
+        "description": "U.S. Department of State uses advisory Levels 1 through 4 (1 Exercise Normal Precautions, 2 Exercise Increased Caution, 3 Reconsider Travel, 4 Do Not Travel)."
+      },
       "normalizedSeverity": {
         "overall": 3,
         "regionalMax": null,
         "hasRegionalEscalation": null,
-        "basis": "Mapped from U.S. Department of State Level 3 (Reconsider Travel)"
+        "basis": "Mapped from U.S. Department of State Level 3 (Reconsider Travel)",
+        "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
       },
       "riskCategories": [
         "crime",
@@ -96,7 +101,9 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
         "terrorism"
       ],
       "riskCategoriesBasis": "Risk factors named in the advisory summary sentence ('... due to ...').",
-      "regionalWarnings": []
+      "regionalCoverage": "unavailable",
+      "regionalCoverageNote": "Regional advisory detail is unavailable from the U.S. State Department RSS source used by this Actor.",
+      "regionalWarnings": null
     },
     {
       "sourceCode": "UK",
@@ -107,11 +114,16 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
       "sourceUpdatedAt": "2026-09-21T15:13:58Z",
       "nativeLevel": "none",
       "nativeAdvice": null,
+      "nativeScale": {
+        "type": "categorical",
+        "description": "UK FCDO uses advisory wording such as 'against all travel' or 'against all but essential travel' (to the whole country or to parts of it) rather than a numbered national scale; nativeLevel lists the GOV.UK alert_status codes."
+      },
       "normalizedSeverity": {
         "overall": 1,
         "regionalMax": null,
         "hasRegionalEscalation": false,
-        "basis": "GOV.UK alert_status=[]: no FCDO advice against travel to the whole country, mapped to 1 (the FCDO has no intermediate national levels)"
+        "basis": "GOV.UK alert_status=[]: no FCDO advice against travel to the whole country, mapped to 1 (the FCDO has no intermediate national levels)",
+        "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
       },
       "riskCategories": [
         "crime",
@@ -128,6 +140,8 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
         "…"
       ],
       "riskCategoriesBasis": "Section headings of the GOV.UK 'Safety and security' page that match the vocabulary.",
+      "regionalCoverage": "available",
+      "regionalCoverageNote": null,
       "regionalWarnings": []
     },
     {
@@ -139,11 +153,16 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
       "sourceUpdatedAt": "2026-09-24T12:53:00Z",
       "nativeLevel": "advisory-state 1",
       "nativeAdvice": "Exercise a high degree of caution",
+      "nativeScale": {
+        "type": "categorical",
+        "description": "Government of Canada uses named advisory categories rather than numbered levels: 'Take normal security precautions', 'Exercise a high degree of caution', 'Avoid non-essential travel', 'Avoid all travel'. nativeLevel 'advisory-state N' is an internal feed code, not a public level."
+      },
       "normalizedSeverity": {
         "overall": 2,
         "regionalMax": 3,
         "hasRegionalEscalation": true,
-        "basis": "Mapped from Government of Canada risk level 'Exercise a high degree of caution' (advisory-state 1)"
+        "basis": "Mapped from Government of Canada risk level 'Exercise a high degree of caution' (advisory-state 1)",
+        "scaleNote": "Internal cross-source normalization used by this Actor for comparison (1 normal precautions, 2 increased caution, 3 avoid non-essential/reconsider travel, 4 avoid all travel). Not necessarily the source government's native advisory level; see nativeLevel, nativeAdvice and nativeScale for the official terminology."
       },
       "riskCategories": [
         "crime",
@@ -161,6 +180,8 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
         "…"
       ],
       "riskCategoriesBasis": "Section headings of the travel.gc.ca 'Safety and security' section that match the vocabulary.",
+      "regionalCoverage": "available",
+      "regionalCoverageNote": null,
       "regionalWarnings": [
         {
           "region": "Regional Advisory",
@@ -207,9 +228,11 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
 | `query` | Your input, the canonical name, ISO-2/ISO-3 codes and `matchMethod` (`name`, `alias`, `iso_code`, `fuzzy`) |
 | `advisories[]` | One entry per government that returned data |
 | `advisories[].nativeLevel` / `nativeAdvice` | The government's own level and wording, unchanged |
-| `advisories[].normalizedSeverity.overall` | National advisory on the shared 1–4 scale |
+| `advisories[].nativeScale` | How that government expresses its own levels: `numbered` (U.S. Levels 1–4) or `categorical` (U.K. FCDO wording, Canada's named categories) |
+| `advisories[].normalizedSeverity.overall` | National advisory on the Actor's **internal** 1–4 scale, for cross-source comparison only. It is not the government's own level: Canada and the U.K. do not number their advisories |
 | `advisories[].normalizedSeverity.regionalMax` | Most severe regional warning. Kept separate from `overall` and never merged into it |
-| `advisories[].regionalWarnings[]` | Region, native advice, normalized severity and verbatim details |
+| `advisories[].regionalCoverage` | `available`: the source data was enough to determine regional-warning status. `unavailable`: this source does not provide enough regional detail, so regional status is **unknown** (see `regionalCoverageNote`). `not_applicable`: regional breakdown does not apply |
+| `advisories[].regionalWarnings[]` | Region, native advice, normalized severity and verbatim details. `[]` = checked, no regional warnings. `null` = unknown (`regionalCoverage: "unavailable"`) or omitted (`includeRegional: false`) |
 | `advisories[].riskCategories` | Controlled vocabulary: `crime`, `terrorism`, `kidnapping`, `civil_unrest`, `armed_conflict`, `arbitrary_detention`, `health`, `natural_disaster`, `border_security`, `maritime`, `landmines`, `wrongful_detention`, `other` |
 | `advisories[].sourceUrl` / `sourceUpdatedAt` | Official page and the source's own last-updated date |
 | `comparison` | `availableSeverityValues`, lowest/highest, `severitySpread` (max − min), `materialDisagreement` (spread ≥ 2), `highestRegionalSeverity`, `sourcesAtHighestOverallSeverity` |
@@ -228,6 +251,9 @@ Every run writes **exactly one dataset item**. Real output for `{"destination": 
 The U.K. FCDO has no national level 2. When it warns only about **parts** of a country, its
 `overall` stays 1, and the warnings appear in `regionalMax` and `regionalWarnings`. For example,
 Ukraine shows UK `overall: 1, regionalMax: 4`. Always read `overall` together with `regionalMax`.
+
+Normalized values are a convenience for comparing different government systems. Quote each government's own
+terms from `nativeLevel` / `nativeAdvice` (for example, Canada's "Exercise a high degree of caution", not "Level 2").
 
 ## Pricing
 
@@ -258,8 +284,9 @@ plus Actor start-up).
 - **Current advisories only.** No history, monitoring or alerts.
 - **English only.**
 - **U.S. regional detail comes from the feed summary.** For some destinations (e.g. Mexico), the State
-  Department lists states only on its full web page, which blocks automated access. In those
-  cases `regionalWarnings` can be empty and `hasRegionalEscalation` is `null` (unknown), not `false`.
+  Department lists states only on its full web page, which blocks automated access. When the feed
+  names no regions, the U.S. entry has `regionalCoverage: "unavailable"` and `regionalWarnings`,
+  `regionalMax` and `hasRegionalEscalation` are all `null` (unknown, not "none").
 - **Some grouped or special destinations are covered by only some governments.** Examples are the West
   Bank and Gaza, the Canary Islands, the Azores and French overseas territories. Expect
   `partial` or `DESTINATION_NOT_FOUND` for some sources.

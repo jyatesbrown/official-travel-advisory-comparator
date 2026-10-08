@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup, Tag
 
 from ..destinations.resolver import Destination, DestinationResolver, get_resolver
 from ..models.input import SourceCode
-from ..models.output import RegionalWarning, SourceAdvisory
+from ..models.output import NativeScale, RegionalWarning, SourceAdvisory
 from ..normalization.risks import map_labels
 from ..normalization.severity import US_PHRASES, match_phrase, summarize, us_level_to_severity
 from ..utils.dates import parse_rss_date, to_iso, utc_now
@@ -38,7 +38,6 @@ _TITLE_SUFFIX = re.compile(r"\s+Travel Advisory$", re.IGNORECASE)
 _DUE_TO = re.compile(r"\bdue to\b(?P<rest>.+?)(?:\.\s|\.$|\bSome areas\b|\bRead the entire\b|$)", re.IGNORECASE)
 _LABEL_SPLIT = re.compile(r",\s*(?:and\s+)?|\s+and\s+")
 _LABEL_PREFIX = re.compile(r"^(?:the\s+)?(?:active\s+)?(?:risks?\s+of\s+)?(?:the\s+)?", re.IGNORECASE)
-_SOME_AREAS = re.compile(r"\bSome areas have (?:an )?increased risk", re.IGNORECASE)
 _REGIONAL = re.compile(
     r"^(?P<advice>Do not travel|Reconsider travel|Exercise increased caution|Exercise normal precautions)\b"
     r"\s*(?P<rest>.*)$",
@@ -47,6 +46,20 @@ _REGIONAL = re.compile(
 _PREPOSITION = re.compile(r"^(?:to|in|near|within|along|throughout|on)\b\s*", re.IGNORECASE)
 _NO_REGION = re.compile(r"^(?:due to|when|while|if|and|because)\b", re.IGNORECASE)
 _MAX_REGION_CHARS = 250
+
+NATIVE_SCALE = NativeScale(
+    type="numbered",
+    description=(
+        "U.S. Department of State uses advisory Levels 1 through 4 (1 Exercise Normal Precautions, "
+        "2 Exercise Increased Caution, 3 Reconsider Travel, 4 Do Not Travel)."
+    ),
+)
+REGIONAL_UNAVAILABLE_NOTE = (
+    "Regional advisory detail is unavailable from the U.S. State Department RSS source used by this Actor."
+)
+REGIONAL_PARTIAL_NOTE = (
+    "Regional warnings are limited to areas named in the U.S. State Department RSS summary used by this Actor."
+)
 
 
 @dataclass(frozen=True)
@@ -170,10 +183,11 @@ def build_advisory(item: FeedItem, destination: Destination, *, include_regional
     labels = extract_risk_labels(lead)
     categories, native_labels = map_labels(labels, unmatched_as_other=True)
     regional = extract_regional(soup, lead_p, {normalize_key(item.name), normalize_key(destination.name)})
+    coverage = "available" if regional else "unavailable"
     severity = summarize(
         overall,
         [w.normalized_severity for w in regional],
-        regional_indicated=bool(_SOME_AREAS.search(lead)) or bool(regional),
+        regional_indicated=True if regional else None,
         basis=f"Mapped from U.S. Department of State Level {item.level} ({item.advice})",
     )
     return SourceAdvisory(
@@ -185,11 +199,17 @@ def build_advisory(item: FeedItem, destination: Destination, *, include_regional
         source_updated_at=item.pub_date,
         native_level=f"Level {item.level}",
         native_advice=item.advice,
+        native_scale=NATIVE_SCALE,
         normalized_severity=severity,
         risk_categories=categories,
         native_risk_labels=native_labels,
         risk_categories_basis="Risk factors named in the advisory summary sentence ('... due to ...').",
-        regional_warnings=regional_output(include_regional, regional),
+        **regional_output(
+            include_regional,
+            coverage,
+            regional,
+            REGIONAL_PARTIAL_NOTE if regional else REGIONAL_UNAVAILABLE_NOTE,
+        ),
     )
 
 
